@@ -343,7 +343,8 @@ a{color:inherit}
 .reader-book.art .pg-foot{display:none}
 .reader-book.art .pg-head{max-width:78%;margin-left:auto;margin-right:auto}
 .reader-book.art .pg-title{padding:0!important}
-.reader-book.art .pg-title .cover{inset:calc(var(--ph) * .07) calc(var(--pw) * .06) calc(var(--ph) * .06) calc(var(--pw) * .1);border-radius:6px;box-shadow:0 10px 26px -8px rgba(40,25,5,.6),0 0 0 1px rgba(120,90,40,.35)}
+/* the cover sits inside the page's ornamental frame, never over it */
+.reader-book.art .pg-title .cover{inset:calc(var(--ph) * .15) calc(var(--pw) * .1) calc(var(--ph) * .14) calc(var(--pw) * .17);border-radius:5px;box-shadow:0 8px 20px -8px rgba(40,25,5,.55),0 0 0 1px rgba(120,90,40,.35)}
 .reader-book.art .pg-blank svg{opacity:.3}
 .reader-book.art .leaf .face{box-shadow:none}
 .reader-book.art .leaf{border-radius:0!important}
@@ -376,16 +377,19 @@ a{color:inherit}
 
 
 /* painted hero overlays */
-.hero-art picture{position:absolute;inset:0}
+.hero-art picture{position:absolute;inset:var(--sky,10%) 0 0 0}
+/* the painting's spires touch its top edge, so it sits a little lower and fades up into matching night sky */
+.hero-art .layer:first-child{background:linear-gradient(90deg,#030707 0%,#04111a 40%,#08222c 66%,#050b09 100%)}
+.hero-photo{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 3.5%);mask-image:linear-gradient(180deg,transparent 0,#000 3.5%)}
+@media (max-width:760px){.hero-art{--sky:6%}.hero-art .layer:first-child{background:#01121a}}
 .hero-photo{object-position:62% 45%}
-@media (max-width:1100px){.hero-photo{object-position:66% 45%}}
 @media (max-width:760px){.hero-photo{object-position:50% 30%}}
 .hero-photo{filter:saturate(.93) contrast(1.07) brightness(.92)}
 /* colour grade: deeper midnight blue-green shadows, a lifted moon, a faint cool rim on the castle */
 .hero-art .grade{position:absolute;inset:0;pointer-events:none}
 .hero-art .grade.shade{background:linear-gradient(180deg,rgba(2,14,18,.32) 0%,rgba(2,14,18,0) 34%,rgba(2,12,12,0) 62%,rgba(1,8,8,.5) 100%);mix-blend-mode:multiply}
-.hero-art .grade.moon{background:radial-gradient(9% 20% at 76.5% 11%,rgba(224,238,240,.26),rgba(224,238,240,0) 70%),radial-gradient(22% 34% at 66% 26%,rgba(150,188,206,.13),rgba(150,188,206,0) 72%);mix-blend-mode:screen}
-@media (max-width:1100px){.hero-art .grade.moon{display:none}}
+.hero-art .grade.moon{background:radial-gradient(9% 20% at 76.5% 20%,rgba(224,238,240,.26),rgba(224,238,240,0) 70%),radial-gradient(22% 34% at 66% 34%,rgba(150,188,206,.13),rgba(150,188,206,0) 72%);mix-blend-mode:screen}
+@media (max-width:760px){.hero-art .grade.moon{display:none}}
 .fx-mist i{position:absolute;left:0;width:200%;height:28%;background:url("/assets/art/mist.webp") 0 100%/50% 100% repeat-x;opacity:.42;mix-blend-mode:screen}
 .fx-mist .m1{bottom:-4%;animation:mist 110s linear infinite}
 .fx-mist .m2{bottom:2%;height:20%;opacity:.24;animation:mist 160s linear infinite reverse}
@@ -399,8 +403,7 @@ a{color:inherit}
 @keyframes candleFlickFar{0%{opacity:.55}50%{opacity:.42}100%{opacity:.5}}
 .fx-sparkles{position:absolute;inset:0;background:url("/assets/art/sparkles.webp") 70% 40%/cover no-repeat;mix-blend-mode:screen;opacity:.16;animation:sparkPulse 14s ease-in-out infinite alternate}
 @keyframes sparkPulse{0%{opacity:.1}100%{opacity:.22}}
-@media (max-width:1100px){.fx-candles .c1,.fx-candles .c3{display:none}.fx-candles .c2{left:74%;top:4%;width:3.4%}.fx-candles .c4{left:90%;top:10%;width:3.8%}}
-@media (max-width:760px){.fx-candles .c2{left:66%;top:2%;width:7%}.fx-candles .c3{display:none}.fx-candles .c4{left:84%;top:4%;width:7.5%}.fx-sparkles{display:none}}
+@media (max-width:760px){.fx-candles .c2{left:66%;top:2%;width:7%}.fx-candles .c1,.fx-candles .c3{display:none}.fx-candles .c4{left:84%;top:4%;width:7.5%}.fx-sparkles{display:none}}
 @media (prefers-reduced-motion:reduce){.fx-mist i,.fx-candles i,.fx-sparkles{animation:none!important}}
 /* ---------- moving scene ---------- */
 .hero-art .layer{position:absolute;inset:-4%;will-change:transform}
@@ -493,7 +496,7 @@ a{color:inherit}
 <main id="home">
   <div class="wrap">
     <section class="hero" aria-labelledby="heroTitle">
-      <div class="hero-art" id="heroArt" aria-hidden="true"><div class="layer" data-depth=".12"><picture><source media="(max-width: 760px)" srcset="/assets/art/hero-portrait.webp"><source media="(max-width: 1100px)" srcset="/assets/art/hero-tablet.webp"><img class="hero-photo" id="heroImg" src="/assets/art/hero-wide.webp" alt="" fetchpriority="high" decoding="async"></picture><i class="grade shade"></i><i class="grade moon"></i></div></div>
+      <div class="hero-art" id="heroArt" aria-hidden="true"><div class="layer" data-depth=".12"><picture><source media="(max-width: 760px)" srcset="/assets/art/hero-portrait.webp"><img class="hero-photo" id="heroImg" src="/assets/art/hero-wide.webp" alt="" fetchpriority="high" decoding="async"></picture><i class="grade shade"></i><i class="grade moon"></i></div></div>
       <div class="hero-copy">
         <p class="eyebrow"><svg aria-hidden="true"><use href="#i-sparkle"/></svg>Written for one hero</p>
         <h1 id="heroTitle">Stories for a Brighter Imagination</h1>
