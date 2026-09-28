@@ -1,0 +1,1600 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arhaan's Enchanted Chronicles</title>
+<meta name="description" content="Magical adventures, curious worlds, one brave hero. Arhaan's personal library of enchanted stories.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon-180x180.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#061A17">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+[hidden]{display:none!important}
+:root{
+  --e950:#061A17; --e900:#0B2822; --e800:#113B31; --e700:#17503F; --e600:#1F6A56;
+  --parch:#E7D5B2; --parch-l:#F4E8D0; --parch-d:#D6BF94; --ink:#2A1F14; --ink-soft:#5A4630;
+  --gold:#C6A15B; --gold-l:#E2C88E; --silver:#BFC6C9; --char:#111513;
+  --text:#EDE3CF; --text-dim:#B9B09C;
+  --s4:4px; --s8:8px; --s12:12px; --s16:16px; --s24:24px; --s32:32px; --s48:48px; --s64:64px; --s96:96px; --s128:128px;
+  --f-display:"Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --f-mark:"Cinzel", "Cormorant Garamond", Georgia, serif;
+  --f-read:"EB Garamond", Georgia, "Times New Roman", serif;
+  --f-ui:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
+  --ease-io:cubic-bezier(0.65,0,0.35,1);
+  --radius:10px;
+  --shadow:0 24px 60px -20px rgba(2,12,10,.85), 0 8px 20px -10px rgba(2,12,10,.7);
+  --read-size:21px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;min-height:100dvh;background:var(--e950);color:var(--text);font-family:var(--f-ui);font-size:16px;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.locked{overflow:hidden}
+img,svg{display:block;max-width:100%}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold-l);outline-offset:3px;border-radius:6px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- atmosphere ---------- */
+.ambience{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;background:#050f0d}
+.ambience::before{content:"";position:absolute;inset:-4%;background:url("/assets/art/great-hall.webp") center 30%/cover no-repeat;animation:hallDrift 60s ease-in-out infinite alternate;opacity:.9}
+@media (max-width:760px){.ambience::before{background-image:url("/assets/art/great-hall-sm.webp")}}
+.ambience::after{content:"";position:absolute;inset:0;
+
+  background:
+    radial-gradient(900px 600px at 8% 12%, rgba(214,160,72,.10), transparent 60%),
+    radial-gradient(800px 700px at 96% 30%, rgba(214,160,72,.08), transparent 60%),
+    radial-gradient(1200px 800px at 50% 110%, rgba(31,106,86,.28), transparent 60%),
+    linear-gradient(180deg,rgba(4,18,15,.55) 0%, rgba(5,20,17,.78) 35%, rgba(4,14,12,.9) 100%);}
+@keyframes hallDrift{from{transform:scale(1) translate3d(0,0,0)}to{transform:scale(1.07) translate3d(-1.2%,-1%,0)}}
+.candle-glow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle, rgba(236,176,86,.16), rgba(236,176,86,0) 65%);animation:flicker 5.5s infinite ease-in-out}
+.candle-glow.a{left:-220px;top:18%}
+.candle-glow.b{right:-240px;top:58%;animation-delay:-2.2s}
+@keyframes flicker{0%,100%{opacity:.85;transform:scale(1)}22%{opacity:1;transform:scale(1.03)}48%{opacity:.7;transform:scale(.98)}70%{opacity:.95;transform:scale(1.02)}}
+.sparkles{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.sparkles i{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--gold-l);box-shadow:0 0 8px 2px rgba(226,200,142,.55);opacity:0;animation:drift linear infinite}
+@keyframes drift{0%{opacity:0;transform:translate3d(0,0,0)}15%{opacity:.8}85%{opacity:.5}100%{opacity:0;transform:translate3d(24px,-160px,0)}}
+
+.wrap{position:relative;z-index:2;max-width:1360px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
+
+/* ---------- header ---------- */
+.site-head{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(6,26,23,.94),rgba(6,26,23,.78));backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid rgba(198,161,91,.16)}
+.head-in{display:flex;align-items:center;gap:var(--s24);min-height:76px}
+.brand{display:flex;align-items:center;gap:var(--s12);text-decoration:none;flex-shrink:0}
+.crest{width:48px;height:48px;color:var(--parch);flex-shrink:0}
+.brand-name{font-family:var(--f-mark);font-weight:600;line-height:1.05;letter-spacing:.02em;color:var(--parch-l)}
+.brand-name b{display:block;font-size:21px;font-weight:600}
+.brand-name span{display:block;font-size:13.5px;letter-spacing:.06em;color:var(--parch)}
+.nav{display:flex;gap:var(--s4);margin-left:auto;align-items:center}
+.nav a,.nav button{font-size:14.5px;color:var(--text);text-decoration:none;padding:10px 12px;border-radius:8px;position:relative;transition:color .2s var(--ease-out),background-color .2s var(--ease-out);white-space:nowrap}
+.nav a::after{content:"";position:absolute;left:12px;right:12px;bottom:4px;height:1.5px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease-out)}
+.nav a[aria-current="true"]::after{transform:scaleX(1)}
+@media (hover:hover) and (pointer:fine){.nav a:hover,.nav button:hover{color:var(--gold-l);background:rgba(198,161,91,.07)}}
+.icon-btn{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;color:var(--parch);transition:background-color .2s var(--ease-out),transform .15s var(--ease-out)}
+.icon-btn:active{transform:scale(.94)}
+@media (hover:hover) and (pointer:fine){.icon-btn:hover{background:rgba(198,161,91,.12)}}
+.icon-btn svg{width:22px;height:22px}
+.menu-btn{display:none;margin-left:auto}
+.head-note{font-family:var(--f-display);font-style:italic;font-size:15px;color:var(--text-dim);line-height:1.2;text-align:right;max-width:150px}
+@media (max-width:1180px){.head-note{display:none}}
+@media (max-width:920px){
+  .menu-btn{display:grid}
+  .nav{position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:0;padding:var(--s8) clamp(16px,4vw,48px) var(--s16);background:rgba(6,26,23,.98);border-bottom:1px solid rgba(198,161,91,.2);transform-origin:top;transition:opacity .2s var(--ease-out),transform .2s var(--ease-out)}
+  .nav:not(.open){opacity:0;transform:translateY(-6px);pointer-events:none;visibility:hidden}
+  .nav a,.nav button{padding:14px 8px;font-size:17px;text-align:left}
+  .nav a::after{display:none}
+  .nav .sound-toggle{align-self:flex-start}
+}
+.brand-name b{font-size:clamp(17px,2.2vw,21px)}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;font-weight:500;font-size:16px;letter-spacing:.01em;text-decoration:none;transition:transform .15s var(--ease-out),background-color .2s var(--ease-out),box-shadow .2s var(--ease-out),border-color .2s}
+.btn:active{transform:scale(.97)}
+.btn[disabled]{opacity:.55;cursor:not-allowed}
+.btn-primary{background:linear-gradient(180deg,#236f59,#17503F);color:#F6ECD8;border:1px solid rgba(226,200,142,.55);box-shadow:0 0 0 4px rgba(31,106,86,.18),0 10px 30px -10px rgba(31,106,86,.9)}
+@media (hover:hover) and (pointer:fine){.btn-primary:hover{background:linear-gradient(180deg,#2a7d65,#1a5a47);box-shadow:0 0 0 5px rgba(31,106,86,.25),0 12px 34px -8px rgba(31,106,86,1)}}
+.btn-ghost{border:1px solid rgba(198,161,91,.45);color:var(--parch-l)}
+@media (hover:hover) and (pointer:fine){.btn-ghost:hover{background:rgba(198,161,91,.1)}}
+.btn svg{width:20px;height:20px;flex-shrink:0}
+
+/* ---------- hero ---------- */
+.hero{position:relative;margin-top:var(--s24);border-radius:18px;overflow:hidden;border:1px solid rgba(198,161,91,.3);background:#061513;box-shadow:var(--shadow);min-height:clamp(380px,34vw,470px);display:flex;align-items:center;isolation:isolate}
+.hero-art{position:absolute;inset:0;z-index:-2}
+.hero-art svg{width:100%;height:100%}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(4,14,12,.88) 0%,rgba(4,14,12,.62) 32%,rgba(4,14,12,.08) 58%,rgba(4,14,12,0) 100%),linear-gradient(0deg,rgba(4,14,12,.55),rgba(4,14,12,0) 35%)}
+.hero-copy{padding:clamp(28px,4vw,56px) clamp(28px,5vw,64px);max-width:780px}
+.eyebrow{font-family:var(--f-mark);font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 var(--s16);display:flex;align-items:center;gap:10px}
+.eyebrow svg{width:14px;height:14px}
+.hero h1{font-family:var(--f-display);font-weight:600;font-size:clamp(40px,4.8vw,64px);line-height:1.02;letter-spacing:-.015em;margin:0 0 var(--s16);color:#F6ECD8;text-wrap:balance}
+.hero p.sub{font-family:var(--f-read);font-size:clamp(19px,1.8vw,23px);line-height:1.45;color:#E4D8BF;margin:0 0 var(--s32);max-width:40ch}
+.hero h1{max-width:13em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:var(--s12);align-items:center}
+.promises{display:flex;flex-wrap:wrap;gap:var(--s16) var(--s24);margin:var(--s24) 0 0;padding:0;list-style:none}
+.promises li{display:flex;align-items:center;gap:10px;font-size:13.5px;line-height:1.3;color:var(--text-dim)}
+.promises svg{width:22px;height:22px;color:var(--gold);flex-shrink:0}
+.banner{position:absolute;right:clamp(24px,4vw,56px);top:0;width:150px;padding:28px 16px 56px;background:linear-gradient(180deg,#0f3a30,#0a2b24);clip-path:polygon(0 0,100% 0,100% 100%,50% 88%,0 100%);text-align:center;font-family:var(--f-display);font-size:17px;line-height:1.25;color:var(--parch);box-shadow:inset 0 0 0 1px rgba(198,161,91,.25);opacity:.95}
+.banner svg{width:44px;height:44px;margin:0 auto 12px;color:var(--silver)}
+@media (max-width:1100px){.banner{display:none}}
+@media (max-width:760px){
+  .hero{align-items:flex-end;min-height:600px}
+  .hero::before{background:linear-gradient(180deg,rgba(5,18,16,0) 0%,rgba(5,18,16,.35) 35%,rgba(5,18,16,.92) 62%,rgba(5,18,16,.97) 100%)}
+  .hero-copy{padding:var(--s24) var(--s24) var(--s32)}
+  .promises{gap:var(--s12) var(--s16)}
+  .promises li{max-width:none}
+}
+
+/* ---------- library ---------- */
+.section{position:relative;z-index:2;padding-block:clamp(40px,4.5vw,64px) 0}
+.sec-head{display:flex;align-items:center;gap:var(--s16);margin-bottom:var(--s24);flex-wrap:wrap}
+.sec-head h2{font-family:var(--f-display);font-weight:600;font-size:clamp(30px,3.4vw,40px);letter-spacing:-.01em;margin:0;color:#F3E7CF;display:flex;align-items:center;gap:12px}
+.sec-head h2 svg{width:22px;height:22px;color:var(--gold)}
+.rule{flex:1;min-width:40px;height:1px;background:linear-gradient(90deg,rgba(198,161,91,.55),rgba(198,161,91,.1));position:relative}
+.rule::after{content:"";position:absolute;right:0;top:-4px;width:9px;height:9px;border:1px solid rgba(198,161,91,.6);transform:rotate(45deg)}
+.lib-tools{display:flex;align-items:center;gap:var(--s8);flex-wrap:wrap}
+.chips{display:flex;gap:var(--s8);flex-wrap:wrap}
+.chip{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(198,161,91,.28);font-size:14px;color:var(--text-dim);transition:all .2s var(--ease-out);display:inline-flex;align-items:center;gap:8px}
+.chip[aria-pressed="true"]{background:rgba(198,161,91,.16);color:var(--parch-l);border-color:rgba(226,200,142,.7)}
+@media (hover:hover) and (pointer:fine){.chip:hover{color:var(--parch-l);border-color:rgba(226,200,142,.55)}}
+.chip .n{font-variant-numeric:tabular-nums;opacity:.75}
+.shelf-arrows{display:flex;gap:var(--s8);margin-left:auto}
+.shelf-arrows .icon-btn{border:1px solid rgba(198,161,91,.3)}
+.shelf-arrows .icon-btn[disabled]{opacity:.3;cursor:default}
+
+.shelf-wrap{position:relative}
+.shelf{display:flex;gap:clamp(16px,2vw,28px);overflow-x:auto;overflow-y:visible;scroll-snap-type:x mandatory;padding:28px 12px 40px;position:relative;z-index:1;scrollbar-width:none;perspective:1400px;-webkit-overflow-scrolling:touch;scroll-padding-inline:4px}
+.shelf::-webkit-scrollbar{display:none}
+.plank{height:140px;margin:-104px -18px 0;position:relative;z-index:0;border-style:solid;border-width:0 46px;border-color:transparent;border-image:url("/assets/art/shelf.webp") 0 240 fill / 0 46px round stretch;filter:drop-shadow(0 18px 18px rgba(0,0,0,.6))}
+@media (max-width:760px){.plank{height:100px;border-width:0 33px;border-image-width:0 33px;margin:-86px -10px 0}}
+.slot{flex:0 0 auto;scroll-snap-align:start;perspective:1400px}
+.book{display:block;width:clamp(148px,15vw,188px);position:relative;z-index:1;transform-style:preserve-3d;transform:rotateY(-7deg);transform-origin:left bottom;transition:transform .35s var(--ease-out),filter .35s var(--ease-out);text-align:left}
+.book .cover{box-shadow:6px 10px 22px -6px rgba(0,0,0,.8),1px 0 0 rgba(255,255,255,.04)}
+.book::after{content:"";position:absolute;top:3px;bottom:3px;right:-7px;width:8px;border-radius:0 3px 3px 0;background:repeating-linear-gradient(180deg,#e9dcbf 0 2px,#cdb98f 2px 3px);transform:rotateY(60deg);transform-origin:left;filter:brightness(.8)}
+@media (hover:hover) and (pointer:fine){.book:hover{transform:rotateY(-2deg) translateY(-10px) rotateZ(-1.2deg)}}
+.book:active{transform:rotateY(-2deg) translateY(-6px) scale(.98)}
+.book:focus-visible{outline:none}
+.book:focus-visible .cover{outline:3px solid var(--gold-l);outline-offset:4px}
+.book.is-new .cover{animation:newglow 2.4s var(--ease-out) 2}
+@keyframes newglow{0%,100%{box-shadow:6px 10px 22px -6px rgba(0,0,0,.8)}50%{box-shadow:0 0 0 3px rgba(226,200,142,.8),0 0 40px 6px rgba(226,200,142,.45)}}
+.book.away{visibility:hidden}
+.fav-mark{position:absolute;top:-6px;right:14px;width:18px;height:30px;background:var(--gold);clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%);z-index:3;box-shadow:0 2px 4px rgba(0,0,0,.4)}
+
+/* covers (shared by shelf, reader title page and flyer) */
+.cover{position:relative;aspect-ratio:2/3;border-radius:4px 7px 7px 4px;overflow:hidden;background:#0b2822;container-type:inline-size;isolation:isolate}
+.cover .art{position:absolute;inset:0;z-index:-2}
+.cover .art svg,.cover .art img{width:100%;height:100%;object-fit:cover}
+.cover::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(4,14,12,.72) 0%,rgba(4,14,12,.18) 30%,rgba(4,14,12,0) 55%,rgba(4,14,12,.55) 100%)}
+.cover::after{content:"";position:absolute;inset:5cqw;border:1px solid rgba(226,200,142,.7);border-radius:3px;pointer-events:none;box-shadow:inset 0 0 0 3px rgba(4,14,12,.25),inset 0 0 0 4px rgba(226,200,142,.25)}
+.cover .spine{position:absolute;left:0;top:0;bottom:0;width:6%;background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(255,255,255,.08) 60%,rgba(0,0,0,.2));z-index:1}
+.cover .c-title{position:absolute;left:10cqw;right:10cqw;top:11cqw;text-align:center;font-family:var(--f-display);font-weight:600;font-size:12.5cqw;line-height:1.02;letter-spacing:-.005em;color:#F7EBD2;text-shadow:0 2px 10px rgba(0,0,0,.75);text-wrap:balance}
+.cover .c-by{position:absolute;left:6cqw;right:6cqw;bottom:9cqw;text-align:center;font-family:var(--f-display);font-size:6cqw;font-weight:500;white-space:nowrap;color:var(--parch);text-shadow:0 1px 6px rgba(0,0,0,.85);letter-spacing:.01em}
+.pg-title .c-by::before,.pg-title .c-by::after{content:"✦";font-size:.6em;color:var(--gold);margin:0 .5em;vertical-align:.15em}
+.book .caption{margin-top:12px;font-size:13px;color:var(--text-dim);line-height:1.35;display:none}
+
+.shelf-empty{padding:40px 24px;text-align:center;color:var(--text-dim);font-family:var(--f-read);font-size:19px;border:1px dashed rgba(198,161,91,.3);border-radius:12px;margin:12px 0 24px;max-width:560px}
+.shelf-empty strong{display:block;font-family:var(--f-display);font-size:24px;color:var(--parch-l);margin-bottom:6px;font-weight:600}
+
+/* book being written placeholder */
+.book.writing .cover{background:linear-gradient(160deg,#0f3a30,#082019)}
+.book.writing .cover::before{background:linear-gradient(110deg,transparent 30%,rgba(226,200,142,.18) 50%,transparent 70%);background-size:250% 100%;animation:shimmer 2.2s linear infinite}
+@keyframes shimmer{from{background-position:120% 0}to{background-position:-120% 0}}
+.book.writing .quill-ico{position:absolute;left:50%;top:48%;width:34%;transform:translate(-50%,-50%);color:var(--gold-l);animation:write 1.6s var(--ease-io) infinite}
+@keyframes write{0%,100%{transform:translate(-56%,-50%) rotate(-4deg)}50%{transform:translate(-44%,-54%) rotate(6deg)}}
+
+/* ---------- about ---------- */
+.about{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,4vw,64px);align-items:start}
+.about p{font-family:var(--f-read);font-size:clamp(18px,1.5vw,20px);line-height:1.62;color:#E2D7C0;margin:0 0 var(--s16);max-width:60ch;text-wrap:pretty}
+.about-art{position:relative;margin:-24px auto 8px;max-width:520px}
+.about-art img{width:100%;height:auto;animation:float 9s ease-in-out infinite;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.divider{display:block;width:min(420px,70%);height:auto;margin:clamp(40px,5vw,64px) auto 0;opacity:.9;position:relative;z-index:2}
+@media (prefers-reduced-motion:reduce){.about-art img{animation:none}}
+.note-card{position:relative;background:linear-gradient(180deg,#efe0c1,#e1cca3);color:var(--ink);border-radius:6px;padding:var(--s32);box-shadow:var(--shadow);transform:rotate(-1.2deg)}
+.note-card h3{font-family:var(--f-display);font-size:24px;margin:0 0 var(--s12);font-weight:700;color:#2d2215}
+.note-card ul{margin:0;padding:0;list-style:none;font-family:var(--f-read);font-size:18px;line-height:1.5}
+.note-card li{padding:6px 0 6px 26px;position:relative}
+.note-card li::before{content:"";position:absolute;left:4px;top:15px;width:8px;height:8px;border:1.5px solid #8a6a33;transform:rotate(45deg)}
+.note-card .serp{position:absolute;right:18px;bottom:14px;width:40px;height:40px;color:#6d5429;opacity:.7}
+@media (max-width:820px){.about{grid-template-columns:1fr}.note-card{transform:none}}
+.site-foot{position:relative;z-index:2;margin-top:clamp(64px,8vw,112px);border-top:1px solid rgba(198,161,91,.15);padding:var(--s32) 0 calc(var(--s32) + env(safe-area-inset-bottom));color:var(--text-dim);font-size:14px}
+.site-foot .wrap{display:flex;justify-content:space-between;gap:var(--s16);flex-wrap:wrap}
+
+/* ---------- modal (generate) ---------- */
+.modal{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:16px}
+.modal-back{position:absolute;inset:0;background:rgba(2,10,9,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);animation:fade .25s var(--ease-out)}
+.modal-card{position:relative;width:min(680px,100%);max-height:calc(100dvh - 32px);overflow:auto;background:linear-gradient(180deg,#0e3029,#081f1a);border:1px solid rgba(198,161,91,.35);border-radius:16px;box-shadow:0 40px 100px -30px rgba(0,0,0,.9);padding:clamp(24px,4vw,40px);animation:pop .3s var(--ease-out);overscroll-behavior:contain}
+@keyframes pop{from{opacity:0;transform:scale(.95) translateY(8px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.modal-card h2{font-family:var(--f-display);font-weight:600;font-size:clamp(28px,3.6vw,36px);line-height:1.1;margin:0 0 var(--s8);color:#F4E8D0;padding-right:40px}
+.modal-card .lede{font-family:var(--f-read);font-size:18px;color:var(--text-dim);margin:0 0 var(--s24)}
+.modal-close{position:absolute;top:12px;right:12px}
+.field{border:0;margin:0 0 var(--s24);padding:0}
+.field legend,.field label.lbl{display:block;font-family:var(--f-mark);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:var(--s12);padding:0}
+.opts{display:flex;flex-wrap:wrap;gap:var(--s8)}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.opt span{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(198,161,91,.3);font-size:15px;color:#DCD2BD;transition:all .18s var(--ease-out);user-select:none}
+.opt input:checked+span{background:rgba(31,106,86,.55);border-color:rgba(226,200,142,.85);color:#fff8e8;box-shadow:inset 0 0 0 1px rgba(226,200,142,.3)}
+.opt input:focus-visible+span{outline:2px solid var(--gold-l);outline-offset:2px}
+@media (hover:hover) and (pointer:fine){.opt:hover span{border-color:rgba(226,200,142,.6)}}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:var(--s16)}
+@media (max-width:560px){.duo{grid-template-columns:1fr}}
+.pass{width:100%;min-height:48px;border-radius:10px;border:1px solid rgba(198,161,91,.4);background:rgba(0,0,0,.25);color:var(--parch-l);padding:0 16px;font-size:16px;font-family:var(--f-ui)}
+.pass:focus{outline:2px solid var(--gold-l);outline-offset:1px}
+.form-err{color:#F2B8A2;font-size:15px;margin:0 0 var(--s16);display:flex;gap:8px;align-items:flex-start}
+.form-actions{display:flex;gap:var(--s12);align-items:center;flex-wrap:wrap}
+.setup-note{font-size:14px;color:var(--text-dim);background:rgba(198,161,91,.08);border:1px solid rgba(198,161,91,.25);padding:12px 14px;border-radius:10px;margin:0 0 var(--s24)}
+.brewing{text-align:center;padding:var(--s24) 0 var(--s16)}
+.brewing .orb{position:relative;width:132px;height:132px;margin:0 auto var(--s24)}
+.brewing .orb svg{position:absolute;inset:0;width:100%;height:100%}
+.brewing .ring{animation:spin 6s linear infinite;transform-origin:50% 50%}
+.brewing .quill{animation:quill 1.6s var(--ease-io) infinite;transform-box:fill-box;transform-origin:20% 90%}
+@keyframes quill{0%,100%{transform:translate(-4px,0) rotate(-5deg)}50%{transform:translate(4px,-3px) rotate(6deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brewing h3{font-family:var(--f-display);font-size:clamp(24px,3vw,30px);font-weight:600;margin:0 0 8px;color:#F4E8D0}
+.brewing p{font-family:var(--f-read);color:var(--text-dim);font-size:18px;margin:0 auto var(--s24);max-width:38ch}
+.steps{display:flex;justify-content:center;gap:var(--s24);list-style:none;padding:0;margin:0 0 var(--s24);font-size:13.5px;color:var(--text-dim);flex-wrap:wrap}
+.steps li{display:flex;align-items:center;gap:8px}
+.steps li::before{content:"";width:10px;height:10px;border-radius:50%;border:1.5px solid rgba(198,161,91,.5)}
+.steps li.on{color:var(--parch-l)}
+.steps li.on::before{background:var(--gold);border-color:var(--gold);box-shadow:0 0 10px var(--gold)}
+.steps li.done::before{background:var(--e600);border-color:var(--e600)}
+
+/* ---------- toast ---------- */
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));z-index:90;transform:translateX(-50%);background:#0f3a30;border:1px solid rgba(226,200,142,.5);color:var(--parch-l);padding:12px 18px;border-radius:12px;font-size:15px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;max-width:calc(100vw - 32px);animation:pop .25s var(--ease-out)}
+.toast button{color:var(--gold-l);font-weight:600;text-decoration:underline;text-underline-offset:3px;min-height:36px}
+
+/* ---------- reader ---------- */
+.reader{position:fixed;inset:0;z-index:70;display:flex;flex-direction:column}
+.reader-back{position:absolute;inset:-20px;background:radial-gradient(1200px 800px at 50% 45%,rgba(14,48,40,.72),rgba(3,12,10,.94) 75%),url("/assets/art/great-hall-sm.webp") center/cover;filter:blur(3px);opacity:0;transition:opacity .45s var(--ease-out)}
+.reader.show .reader-back{opacity:1}
+.reader-bar,.reader-foot,.turn{opacity:0;transition:opacity .3s var(--ease-out)}
+.reader.chrome .reader-bar,.reader.chrome .reader-foot,.reader.chrome .turn{opacity:1}
+.reader-bar{position:relative;z-index:3;display:flex;align-items:center;gap:var(--s8);padding:calc(8px + env(safe-area-inset-top)) clamp(8px,2vw,24px) 8px;min-height:64px}
+.reader-title{flex:1;min-width:0;font-family:var(--f-display);font-size:clamp(18px,2vw,22px);font-weight:600;color:var(--parch-l);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 8px}
+.r-actions{display:flex;gap:2px;align-items:center}
+.r-btn{min-height:44px;min-width:44px;padding:0 12px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--parch);transition:background-color .2s var(--ease-out),transform .15s var(--ease-out)}
+.r-btn:active{transform:scale(.96)}
+@media (hover:hover) and (pointer:fine){.r-btn:hover{background:rgba(198,161,91,.12)}}
+.r-btn svg{width:21px;height:21px;flex-shrink:0}
+.r-btn[aria-pressed="true"] svg{color:var(--gold-l);fill:currentColor}
+.r-btn .lbl{white-space:nowrap}
+@media (max-width:1060px){.r-btn .lbl{display:none}.r-btn{padding:0;justify-content:center}}
+@media (max-width:520px){.reader-title{visibility:hidden}.shelf-arrows{display:none}.eyebrow{letter-spacing:.14em}}
+.pg{--fade:0}
+.pg::before{content:"";position:absolute;left:0;right:0;bottom:0;height:56px;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(234,216,180,0),#EAD8B4 85%);opacity:var(--fade);transition:opacity .2s}
+.reader-stage{position:relative;z-index:2;flex:1;display:grid;place-items:center;min-height:0}
+.reader-book{position:relative;display:flex;transform-origin:0 0;will-change:transform}
+.reader-book .pg{position:relative;overflow:hidden;background:
+  radial-gradient(120% 90% at 50% 40%, rgba(255,250,236,.55), rgba(255,250,236,0) 70%),
+  linear-gradient(180deg,#F3E6CB,#EAD8B4);
+  color:var(--ink);box-shadow:0 30px 70px -25px rgba(0,0,0,.9)}
+.reader-book .pg::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:multiply;opacity:.9}
+.reader-book.spread .pg.left{border-radius:10px 2px 2px 10px;box-shadow:inset -34px 0 40px -30px rgba(90,60,20,.45),0 30px 70px -25px rgba(0,0,0,.9)}
+.reader-book.spread .pg.right{border-radius:2px 10px 10px 2px;box-shadow:inset 34px 0 40px -30px rgba(90,60,20,.45),0 30px 70px -25px rgba(0,0,0,.9)}
+.reader-book.single .pg.left{display:none}
+.reader-book.single .pg.right{border-radius:6px 12px 12px 6px;box-shadow:inset 18px 0 30px -24px rgba(90,60,20,.4),0 30px 70px -25px rgba(0,0,0,.9)}
+.pg-in{position:absolute;inset:0;overflow-y:auto;overscroll-behavior:contain;padding:clamp(28px,5.5%,56px) clamp(24px,8%,64px) clamp(40px,7%,64px);display:flex;flex-direction:column;scrollbar-width:thin;scrollbar-color:rgba(90,60,20,.3) transparent}
+.pg-in.fading{transition:opacity .16s var(--ease-out)}
+.pg-num{font-family:var(--f-display);font-size:20px;text-align:center;color:#6b5332;margin:0 0 4px;display:flex;align-items:center;justify-content:center;gap:12px}
+.pg-num::before,.pg-num::after{content:"";width:40px;height:1px;background:linear-gradient(90deg,transparent,#9a7a45)}
+.pg-num::after{transform:scaleX(-1)}
+.pg-head{font-family:var(--f-display);font-weight:700;font-size:calc(var(--read-size) * 1.3);line-height:1.15;text-align:center;margin:0 0 calc(var(--read-size) * .9);color:#2d2215;text-wrap:balance}
+.pg-text{font-family:var(--f-read);font-size:var(--read-size);line-height:1.6;color:var(--ink);hyphens:manual}
+.pg-text p{margin:0 0 .8em;text-wrap:pretty}
+.pg-text p:last-child{margin-bottom:0}
+.pg-text p.cont{text-indent:0}
+.pg-head.mid{margin-top:1.3em}
+.pg-head.mid::before{content:"✦";display:block;font-size:.55em;color:#9a7a45;margin-bottom:.5em;font-weight:400}
+.pg-text p.dropcap::first-letter{font-family:var(--f-display);font-weight:700;float:left;font-size:3.3em;line-height:.82;padding:.06em .08em 0 0;color:#1d4d3f}
+.pg-foot{margin-top:auto;padding-top:20px;text-align:center;color:#8a6d42;font-size:15px;font-family:var(--f-display)}
+.pg-foot svg{width:22px;height:22px;display:inline-block;color:#9a7a45;opacity:.7}
+.pg-title{padding:0!important;overflow:hidden}
+.pg-title .cover{position:absolute;inset:0;aspect-ratio:auto;border-radius:0}
+.pg-title .cover .c-title{top:12cqw;font-size:clamp(28px,10cqw,64px)}
+.pg-title .cover .c-by{font-size:clamp(14px,4.2cqw,24px)}
+.pg-title .cover::before{background:linear-gradient(180deg,rgba(4,14,12,.72) 0%,rgba(4,14,12,.12) 30%,rgba(4,14,12,0) 45%,rgba(4,14,12,.72) 76%,rgba(4,14,12,.94) 100%)}
+.pg-title .c-sub{position:absolute;left:12cqw;right:12cqw;top:auto;bottom:18cqw;text-align:center;font-family:var(--f-read);font-style:italic;font-size:clamp(16px,4.2cqw,22px);color:#EFE3C8;text-shadow:0 1px 8px rgba(0,0,0,.9);text-wrap:balance}
+.pg-end{align-items:center;justify-content:center;text-align:center}
+.pg-end .fin{font-family:var(--f-display);font-style:italic;font-size:calc(var(--read-size)*2.4);color:#2d2215;margin:0 0 8px;font-weight:600}
+.pg-end .fin-sub{font-family:var(--f-read);font-size:calc(var(--read-size)*.95);color:var(--ink-soft);margin:0 0 28px;max-width:30ch}
+.pg-end .serp{width:60px;height:60px;color:#1d4d3f;margin:0 auto 18px}
+.pg-end .end-actions{display:flex;flex-direction:column;gap:12px;width:min(320px,100%)}
+.pg-end .btn-ink{min-height:52px;border-radius:999px;background:#17503F;color:#F6ECD8;font-weight:500;display:flex;align-items:center;justify-content:center;gap:10px;border:1px solid #0f3a30;transition:transform .15s var(--ease-out),background-color .2s}
+.pg-end .btn-ink.alt{background:transparent;color:#2d2215;border-color:#9a7a45}
+.pg-end .btn-ink:active{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){.pg-end .btn-ink:hover{background:#1f6a56}.pg-end .btn-ink.alt:hover{background:rgba(154,122,69,.12)}}
+.pg-end .btn-ink svg{width:20px;height:20px}
+.pg-blank{align-items:center;justify-content:center}
+.pg-blank svg{width:90px;height:90px;color:#b89a64;opacity:.45}
+/* the turning leaf: plain paper only, never text, so nothing is ever read at an angle */
+.leaf{position:absolute;top:0;z-index:4;pointer-events:none;transform-style:preserve-3d;backface-visibility:visible}
+.leaf .face{position:absolute;inset:0;border-radius:inherit;background:url("/assets/art/paper.webp") center/cover,#efe0c0}
+.reader-book.single .leaf .face{background:url("/assets/art/page-single.webp") 0 0/100% 100% no-repeat}
+.leaf .shade{position:absolute;inset:0;border-radius:inherit;background:linear-gradient(90deg,rgba(80,50,15,.35),rgba(80,50,15,0) 45%);opacity:0}
+.cover-wrap{position:absolute;top:0;z-index:5}
+.cover-leaf{position:absolute;inset:0;transform-style:preserve-3d;transform-origin:0 50%}
+.cover-leaf>div{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.cover-leaf .front .cover{position:absolute;inset:0;aspect-ratio:auto;border-radius:3px 10px 10px 3px}
+.cover-leaf .back{transform:rotateY(180deg);background:linear-gradient(90deg,#0f3a30,#0a2b24);border-radius:10px 3px 3px 10px;box-shadow:inset 0 0 0 10px #0b2822, inset 0 0 0 11px rgba(198,161,91,.5)}
+.cover-leaf .back svg{position:absolute;left:50%;top:50%;width:30%;transform:translate(-50%,-50%);color:rgba(191,198,201,.5)}
+
+/* painted open book (laptop / tablet landscape) */
+.reader-book.art::before{content:"";position:absolute;z-index:0;pointer-events:none;left:calc(var(--s) * -342px);top:calc(var(--s) * -108px);width:calc(var(--s) * 1600px);height:calc(var(--s) * 1050px);background:url("/assets/art/book-spread.webp") 0 0/100% 100% no-repeat;filter:drop-shadow(0 34px 44px rgba(0,0,0,.65));transition:opacity .3s var(--ease-out)}
+.reader-book.art.bare::before{opacity:0}
+.reader-book.art .pg{z-index:1;background:none!important;box-shadow:none!important;border-radius:0!important}
+.reader-book.art .pg::after,.reader-book.art .pg::before{display:none}
+.reader-book.art .pg-in{padding:calc(var(--ph) * .178) calc(var(--pw) * .1) calc(var(--ph) * .16) calc(var(--pw) * .145)}
+.reader-book.art .pg.right .pg-in{padding-left:calc(var(--pw) * .1);padding-right:calc(var(--pw) * .145)}
+.reader-book.art .pg-num{position:absolute;left:0;right:0;top:calc(var(--ph) * .06);margin:0;font-size:19px;color:#4e3a20;font-weight:600}
+.reader-book.art .pg-num::before,.reader-book.art .pg-num::after{display:none}
+.reader-book.art .pg-foot{display:none}
+.reader-book.art .pg-head{max-width:78%;margin-left:auto;margin-right:auto}
+.reader-book.art .pg-title{padding:0!important}
+.reader-book.art .pg-title .cover{inset:calc(var(--ph) * .07) calc(var(--pw) * .06) calc(var(--ph) * .06) calc(var(--pw) * .1);border-radius:6px;box-shadow:0 10px 26px -8px rgba(40,25,5,.6),0 0 0 1px rgba(120,90,40,.35)}
+.reader-book.art .pg-blank svg{opacity:.3}
+.reader-book.art .leaf .face{box-shadow:none}
+.reader-book.art .leaf{border-radius:0!important}
+/* painted single parchment page (phone / tablet portrait) */
+.reader-book.single .pg.right{background:none!important;border-radius:0!important;box-shadow:none!important;border:calc(var(--pw) * .085) solid transparent;border-image:url("/assets/art/page-single.webp") 170 fill / calc(var(--pw) * .085) stretch;filter:drop-shadow(0 22px 30px rgba(0,0,0,.6))}
+.reader-book.single .pg.right::after{display:none}
+.reader-book.single .pg-in{padding:calc(var(--pw) * .05) calc(var(--pw) * .045) calc(var(--pw) * .06)}
+.reader-book.single .pg-title{padding:0!important}
+.reader-book.single .pg-title .cover{border-radius:4px}
+.reader-book.measure::before{display:none}
+.turn{position:absolute;top:50%;z-index:4;width:clamp(56px,6vw,84px);height:min(70%,560px);transform:translateY(-50%);display:grid;place-items:center;color:var(--parch)}
+.turn span{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(226,200,142,.45);background:rgba(6,26,23,.55);transition:transform .15s var(--ease-out),background-color .2s var(--ease-out),opacity .2s}
+.turn svg{width:26px;height:26px}
+.turn:active span{transform:scale(.92)}
+@media (hover:hover) and (pointer:fine){.turn:hover span{background:rgba(31,106,86,.7)}}
+.turn[disabled]{cursor:default}
+.turn[disabled] span{opacity:.2}
+.turn.prev{left:clamp(4px,1.5vw,24px)}
+.turn.next{right:clamp(4px,1.5vw,24px)}
+.reader-foot{position:relative;z-index:3;display:flex;align-items:center;gap:var(--s16);padding:8px clamp(12px,3vw,32px) calc(12px + env(safe-area-inset-bottom));min-height:56px}
+.progress{flex:1;height:3px;border-radius:2px;background:rgba(198,161,91,.18);overflow:hidden}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--e600),var(--gold));transform-origin:left;transition:transform .4s var(--ease-out)}
+.foot-nav{display:none;gap:var(--s12)}
+.foot-nav button{min-width:64px;min-height:52px;border-radius:999px;border:1px solid rgba(226,200,142,.45);background:rgba(6,26,23,.6);display:grid;place-items:center;color:var(--parch)}
+.foot-nav button[disabled]{opacity:.25}
+.foot-nav svg{width:24px;height:24px}
+.resume{font-size:14px;color:var(--gold-l);text-decoration:underline;text-underline-offset:3px;min-height:44px;padding:0 6px}
+.reader.single-mode .turn,.reader.compact-nav .turn{display:none}
+.reader.single-mode .foot-nav,.reader.compact-nav .foot-nav{display:flex}
+
+
+/* painted hero overlays */
+.hero-art picture{position:absolute;inset:0}
+.hero-photo{object-position:62% 45%}
+@media (max-width:1100px){.hero-photo{object-position:66% 45%}}
+@media (max-width:760px){.hero-photo{object-position:50% 30%}}
+.fx-mist i{position:absolute;left:0;width:200%;height:46%;background:url("/assets/art/mist.webp") 0 100%/50% 100% repeat-x;opacity:.55;mix-blend-mode:screen}
+.fx-mist .m1{bottom:-6%;animation:mist 55s linear infinite}
+.fx-mist .m2{bottom:6%;height:34%;opacity:.35;animation:mist 85s linear infinite reverse}
+.fx-candles i{position:absolute;background:url("/assets/art/candles.webp") center/contain no-repeat;will-change:transform}
+.fx-candles .c1{right:4%;top:-3%;width:42%;height:40%;animation:bob 8s ease-in-out infinite,candleFlick 2.6s ease-in-out infinite alternate}
+.fx-candles .c2{left:36%;top:-5%;width:24%;height:24%;filter:blur(1.2px);animation:bob 11s ease-in-out infinite -4s,candleFlickFar 3.1s ease-in-out infinite alternate -1s}
+@keyframes candleFlick{0%{opacity:1}40%{opacity:.86}55%{opacity:.97}100%{opacity:.9}}
+@keyframes candleFlickFar{0%{opacity:.55}50%{opacity:.42}100%{opacity:.5}}
+.fx-sparkles{position:absolute;inset:0;background:url("/assets/art/sparkles.webp") 70% 40%/cover no-repeat;mix-blend-mode:screen;animation:sparkPulse 7s ease-in-out infinite alternate}
+@keyframes sparkPulse{0%{opacity:.25;transform:translate3d(0,6px,0) scale(1)}100%{opacity:.7;transform:translate3d(-8px,-6px,0) scale(1.03)}}
+@media (max-width:760px){.fx-candles .c1{width:48%;height:17%;right:-4%;top:-1%}.fx-candles .c2{display:none}}
+@media (prefers-reduced-motion:reduce){.fx-mist i,.fx-candles i,.fx-sparkles{animation:none!important}}
+/* ---------- moving scene ---------- */
+.hero-art .layer{position:absolute;inset:-4%;will-change:transform}
+.hero-art .layer svg,.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-art .tw{animation:twinkle 4s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.9}50%{opacity:.15}}
+.hero-art .win{animation:winflick 5s ease-in-out infinite}
+@keyframes winflick{0%,100%{opacity:.95}40%{opacity:.7}45%{opacity:1}70%{opacity:.55}75%{opacity:.9}}
+.hero-art .shim{animation:shimmer2 3.2s ease-in-out infinite}
+@keyframes shimmer2{0%,100%{opacity:.15;transform:translateX(0)}50%{opacity:.6;transform:translateX(6px)}}
+.clouds i{position:absolute;left:0;height:22%;border-radius:50%;background:radial-gradient(closest-side,rgba(170,200,190,.28),rgba(170,200,190,0));filter:blur(6px);animation:cloud var(--d) linear infinite;animation-delay:var(--delay)}
+@keyframes cloud{from{transform:translateX(-60%)}to{transform:translateX(260%)}}
+.mist i{position:absolute;left:0;width:200%;height:26%;background:
+  radial-gradient(40% 50% at 20% 50%,rgba(160,200,188,.20),transparent 70%),
+  radial-gradient(30% 45% at 55% 60%,rgba(160,200,188,.16),transparent 70%),
+  radial-gradient(35% 50% at 85% 45%,rgba(160,200,188,.18),transparent 70%);filter:blur(8px)}
+.mist .m1{top:62%;animation:mist 48s linear infinite}
+.mist .m2{top:70%;animation:mist 70s linear infinite reverse;opacity:.8}
+@keyframes mist{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.candle{position:absolute;width:calc(9px * var(--s));height:calc(40px * var(--s));border-radius:2px 2px 3px 3px;background:linear-gradient(90deg,#b9a276,#f5e9ca 45%,#c9b186);box-shadow:0 0 calc(10px * var(--s)) rgba(255,190,100,.18);animation:bob var(--d) ease-in-out infinite;animation-delay:var(--delay)}
+.candle::before{content:"";position:absolute;left:50%;bottom:100%;width:calc(7px * var(--s));height:calc(15px * var(--s));margin-left:calc(-3.5px * var(--s));border-radius:50% 50% 45% 45%/65% 65% 35% 35%;background:radial-gradient(ellipse at 50% 72%,#fffbe8 0%,#ffd36a 38%,rgba(255,150,40,.85) 60%,rgba(255,120,20,0) 75%);transform-origin:50% 100%;animation:flame var(--f) ease-in-out infinite alternate}
+.candle::after{content:"";position:absolute;left:50%;top:calc(-34px * var(--s));width:calc(70px * var(--s));height:calc(70px * var(--s));margin-left:calc(-35px * var(--s));border-radius:50%;background:radial-gradient(circle,rgba(255,196,110,.38),rgba(255,196,110,0) 65%);animation:glowp var(--f) ease-in-out infinite alternate}
+.candle.far{filter:blur(.8px);opacity:.75}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes flame{0%{transform:scale(1,1) rotate(-2deg)}50%{transform:scale(.92,1.08) rotate(2deg)}100%{transform:scale(1.04,.94) rotate(-1deg)}}
+@keyframes glowp{from{opacity:.75}to{opacity:1}}
+.page-candles{position:fixed;inset:0;pointer-events:none;z-index:1}
+@media (max-width:1100px){.page-candles{display:none}}
+.owl-track{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-art .owl{position:absolute;top:14%;left:0;width:74px;height:auto;animation:owlfly 34s linear infinite;animation-delay:4s;opacity:0}
+.owl .wing{transform-box:fill-box;animation:flap .55s ease-in-out infinite alternate}
+.owl .wing.l{transform-origin:100% 50%}.owl .wing.r{transform-origin:0 50%}
+@keyframes flap{from{transform:scaleY(1)}to{transform:scaleY(-.35)}}
+@keyframes owlfly{0%{transform:translate(-120px,40px) scale(.8);opacity:1}28%{transform:translate(55vw,-10px) scale(.6);opacity:1}40%{transform:translate(95vw,-40px) scale(.5);opacity:1}41%,100%{transform:translate(110vw,-40px) scale(.5);opacity:0}}
+@media (prefers-reduced-motion:reduce){.hero-art .layer{transform:none!important}.candle,.candle::before,.candle::after,.clouds i,.mist i,.owl,.owl .wing{animation:none!important}.owl{display:none}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .sparkles,.candle-glow{display:none}
+  .book,.book:hover{transition:none;transform:rotateY(-7deg)}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}
+}
+</style>
+</head>
+<body>
+<div class="ambience" aria-hidden="true"></div>
+<div class="candle-glow a" aria-hidden="true"></div>
+<div class="candle-glow b" aria-hidden="true"></div>
+<div class="sparkles" aria-hidden="true" id="sparkles"></div>
+
+<!-- icon sprite (original artwork; no official franchise marks) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-crest" viewBox="0 0 200 200"><circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width="5" opacity=".55"/><circle cx="100" cy="100" r="82" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".35"/><g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><path d="M136 45c-45-20-89 9-77 44 9 25 53 17 67 35 14 18-2 48-31 45-17-2-29-13-34-25"/><path d="M131 44l22 11-18 15"/></g><circle cx="141" cy="51" r="3.5" fill="currentColor"/></symbol>
+  <symbol id="i-serpent" viewBox="0 0 200 200"><g fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round"><path d="M136 35c-45-20-89 9-77 44 9 25 53 17 67 35 14 18-2 48-31 45-17-2-29-13-34-25"/><path d="M131 34l22 11-18 15"/></g><circle cx="141" cy="41" r="3" fill="currentColor"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 100 100"><path d="M50 5c4 27 13 36 40 40-27 4-36 13-40 40-4-27-13-36-40-40 27-4 36-13 40-40z" fill="currentColor"/></symbol>
+  <symbol id="i-book" viewBox="0 0 120 100"><g fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="round"><path d="M60 22C47 9 27 9 12 15v61c17-6 35-3 48 10z"/><path d="M60 22C73 9 93 9 108 15v61c-17-6-35-3-48 10z"/></g></symbol>
+  <symbol id="i-quill" viewBox="0 0 120 120"><path d="M100 12C64 17 34 44 18 93c25-20 50-29 74-54-18 25-35 40-65 57l-9 12 14-8c23-12 48-35 68-88z" fill="currentColor"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 120 120"><g fill="none" stroke="currentColor" stroke-width="6"><circle cx="60" cy="60" r="46"/><circle cx="60" cy="60" r="5"/><path d="M70 34L55 55 50 86l15-21z"/></g></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6.5 3.5h11v17l-5.5-4-5.5 4z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="M8.2 10.8l7.6-4.1M8.2 13.2l7.6 4.1"/></g></symbol>
+  <symbol id="i-wand" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20L15 9"/><path d="M17 3v3M17 12v3M11.5 7.5h3M19.5 7.5h3M14.9 5.4l1.1 1.1M18 8.5l1.1 1.1M19.1 5.4L18 6.5"/></g></symbol>
+  <symbol id="i-sound" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 010 6M18 6.5a7.5 7.5 0 010 11"/></g></symbol>
+  <symbol id="i-mute" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></g></symbol>
+  <symbol id="i-text" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18l5-12 5 12M4.8 14h6.4"/><path d="M14.5 18l3.5-8.5 3.5 8.5M15.6 15.5h4.8"/></g></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0112 7.3 4.3 4.3 0 0119.5 10c0 5.4-7.5 10-7.5 10z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="#home" aria-label="Arhaan's Enchanted Chronicles, home">
+      <svg class="crest" aria-hidden="true"><use href="#i-crest"/></svg>
+      <span class="brand-name"><b>Arhaan's</b><span>Enchanted Chronicles</span></span>
+    </a>
+    <button class="icon-btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav" aria-label="Menu"><svg><use href="#i-menu"/></svg></button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#home" data-nav="home" aria-current="true">Home</a>
+      <a href="#library" data-nav="library">Story Library</a>
+      <button type="button" data-action="generate">Generate New Story</button>
+      <a href="#library" data-nav="saved" data-action="saved">Saved Stories</a>
+      <a href="#about" data-nav="about">About</a>
+      <button type="button" class="icon-btn sound-toggle" data-action="sound" aria-pressed="true" aria-label="Page sounds on"><svg><use href="#i-sound"/></svg></button>
+    </nav>
+    <p class="head-note" aria-hidden="true">A little imagination goes a long way.</p>
+  </div>
+</header>
+
+<main id="home">
+  <div class="wrap">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-art" id="heroArt" aria-hidden="true"><div class="layer" data-depth=".12"><picture><source media="(max-width: 760px)" srcset="/assets/art/hero-portrait.webp"><source media="(max-width: 1100px)" srcset="/assets/art/hero-tablet.webp"><img class="hero-photo" id="heroImg" src="/assets/art/hero-wide.webp" alt="" fetchpriority="high" decoding="async"></picture></div></div>
+      <div class="hero-copy">
+        <p class="eyebrow"><svg aria-hidden="true"><use href="#i-sparkle"/></svg>Written for one hero</p>
+        <h1 id="heroTitle">Stories for a Brighter Imagination</h1>
+        <p class="sub">Magical adventures. Curious worlds. One brave hero.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" data-action="generate"><svg aria-hidden="true"><use href="#i-sparkle"/></svg>Generate New Story</button>
+          <a class="btn btn-ghost" href="#library">Visit the library</a>
+        </div>
+        <ul class="promises">
+          <li><svg aria-hidden="true"><use href="#i-quill"/></svg>A brand-new adventure every time</li>
+          <li><svg aria-hidden="true"><use href="#i-sparkle"/></svg>Each book gets its own painted cover</li>
+          <li><svg aria-hidden="true"><use href="#i-book"/></svg>Kept forever in Arhaan's library</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <section class="section" id="library" aria-labelledby="libTitle">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="libTitle"><svg aria-hidden="true"><use href="#i-sparkle"/></svg>Story Library</h2>
+        <div class="rule" aria-hidden="true"></div>
+      </div>
+      <div class="sec-head" style="margin-top:-8px">
+        <div class="chips" role="group" aria-label="Show">
+          <button class="chip" data-filter="all" aria-pressed="true">All stories <span class="n" id="nAll">0</span></button>
+          <button class="chip" data-filter="saved" aria-pressed="false"><svg width="14" height="14" aria-hidden="true"><use href="#i-bookmark"/></svg>Saved <span class="n" id="nSaved">0</span></button>
+          <button class="chip" data-filter="Alysia" aria-pressed="false">With Alysia</button>
+          <button class="chip" data-filter="Tito" aria-pressed="false">With Tito</button>
+        </div>
+        <div class="shelf-arrows">
+          <button class="icon-btn" id="shelfPrev" aria-label="Scroll shelf left"><svg><use href="#i-left"/></svg></button>
+          <button class="icon-btn" id="shelfNext" aria-label="Scroll shelf right"><svg><use href="#i-right"/></svg></button>
+        </div>
+      </div>
+      <div class="shelf-wrap">
+        <div class="shelf" id="shelf" role="list" aria-label="Books"></div>
+        <div class="plank" aria-hidden="true"></div>
+      </div>
+      <div id="shelfEmpty" hidden></div>
+    </div>
+  </section>
+
+  <img class="divider" src="/assets/art/divider.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <section class="section" id="about" aria-labelledby="aboutTitle">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="aboutTitle"><svg aria-hidden="true"><use href="#i-compass"/></svg>About the Chronicles</h2><div class="rule" aria-hidden="true"></div></div>
+      <div class="about">
+        <div>
+          <p>This is Arhaan's own library. Every book on the shelf is a story where he is the hero, at Mirecastle Academy and far beyond it: secret rooms, singing islands, clockwork skyships and mysteries only a clever Viridian could untangle.</p>
+          <p>Press <em>Generate New Story</em> and a brand-new adventure is written just for him, with its own painted cover. Sometimes his sister Alysia comes along, sometimes Uncle Tito does, and sometimes Arhaan goes it alone. Once a story is written it stays on the shelf for good, ready to be read again on any device.</p>
+          <p>Tap a book to open it, then turn the pages with the arrows, a swipe, or the arrow keys on a keyboard.</p>
+        </div>
+        <div class="about-side">
+        <div class="about-art" aria-hidden="true"><img src="/assets/art/castle-cliff.webp" alt="" loading="lazy" decoding="async"></div>
+        <aside class="note-card" aria-label="How it works">
+          <h3>How a new book is made</h3>
+          <ul>
+            <li>Choose the kind of adventure and the mood</li>
+            <li>Decide who joins Arhaan, or let it be a surprise</li>
+            <li>The story is written, then its cover is painted</li>
+            <li>The new book appears on the shelf and opens</li>
+          </ul>
+          <svg class="serp" aria-hidden="true"><use href="#i-serpent"/></svg>
+        </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site-foot"><div class="wrap"><span>Arhaan's Enchanted Chronicles</span><span>Made with imagination, for one brave reader.</span></div></footer>
+
+<!-- Generate modal -->
+<div class="modal" id="genModal" role="dialog" aria-modal="true" aria-labelledby="genTitle" hidden>
+  <div class="modal-back" data-close></div>
+  <div class="modal-card">
+    <button class="icon-btn modal-close" data-close aria-label="Close"><svg><use href="#i-close"/></svg></button>
+    <form id="genForm" novalidate>
+      <h2 id="genTitle">A new adventure for Arhaan</h2>
+      <p class="lede">Pick a few ingredients, or leave them as surprises.</p>
+      <p class="setup-note" id="setupNote" hidden></p>
+      <fieldset class="field"><legend>Adventure type</legend><div class="opts" id="optAdventure"></div></fieldset>
+      <div class="duo">
+        <fieldset class="field"><legend>Include Alysia?</legend><div class="opts" id="optAlysia"></div></fieldset>
+        <fieldset class="field"><legend>Include Tito?</legend><div class="opts" id="optTito"></div></fieldset>
+      </div>
+      <fieldset class="field"><legend>Mood</legend><div class="opts" id="optMood"></div></fieldset>
+      <div class="field" id="passField" hidden>
+        <label class="lbl" for="passInput">Magic word</label>
+        <input class="pass" id="passInput" type="password" autocomplete="off" placeholder="Ask a grown-up">
+      </div>
+      <p class="form-err" id="genErr" role="alert" hidden></p>
+      <div class="form-actions">
+        <button class="btn btn-primary" type="submit" id="genSubmit"><svg aria-hidden="true"><use href="#i-sparkle"/></svg>Create Arhaan's Adventure</button>
+      </div>
+    </form>
+    <div class="brewing" id="brewing" hidden aria-live="polite">
+      <div class="orb" aria-hidden="true">
+        <svg viewBox="0 0 132 132"><defs><radialGradient id="og"><stop offset="0" stop-color="#E2C88E" stop-opacity=".35"/><stop offset="1" stop-color="#E2C88E" stop-opacity="0"/></radialGradient></defs><circle cx="66" cy="66" r="64" fill="url(#og)"/><g class="ring" fill="none" stroke="#C6A15B" stroke-width="1.2"><circle cx="66" cy="66" r="54" stroke-dasharray="3 9"/><circle cx="66" cy="66" r="44" opacity=".5"/></g></svg>
+        <svg viewBox="0 0 132 132"><g class="quill"><use href="#i-quill" x="40" y="36" width="52" height="52" style="color:#F4E8D0"/></g></svg>
+      </div>
+      <h3 id="brewTitle">Writing Arhaan's next adventure…</h3>
+      <p id="brewText">The quill is choosing a world he has never visited before.</p>
+      <ol class="steps"><li data-step="writing">Writing the story</li><li data-step="painting">Painting the cover</li><li data-step="done">Binding the book</li></ol>
+      <button class="btn btn-ghost" type="button" data-close>Keep browsing while it's written</button>
+    </div>
+  </div>
+</div>
+
+<!-- Reader -->
+<div class="reader" id="reader" role="dialog" aria-modal="true" aria-labelledby="readerTitle" hidden>
+  <div class="reader-back"></div>
+  <div class="reader-bar">
+    <button class="r-btn" data-r="close" aria-label="Close book and return to the library"><svg><use href="#i-close"/></svg><span class="lbl">Close</span></button>
+    <div class="reader-title" id="readerTitle"></div>
+    <div class="r-actions">
+      <button class="r-btn" data-r="save" aria-pressed="false"><svg><use href="#i-bookmark"/></svg><span class="lbl">Save to Library</span></button>
+      <button class="r-btn" data-r="share" aria-label="Share story"><svg><use href="#i-share"/></svg><span class="lbl">Share Story</span></button>
+      <button class="r-btn" data-r="similar" aria-label="Generate a similar story"><svg><use href="#i-wand"/></svg><span class="lbl">Generate a Similar Story</span></button>
+      <button class="r-btn" data-r="size" aria-label="Change text size"><svg><use href="#i-text"/></svg></button>
+      <button class="r-btn" data-action="sound" aria-pressed="true" aria-label="Page sounds on"><svg><use href="#i-sound"/></svg></button>
+    </div>
+  </div>
+  <div class="reader-stage" id="stage">
+    <button class="turn prev" data-r="prev" aria-label="Previous page"><span><svg><use href="#i-left"/></svg></span></button>
+    <div class="reader-book" id="rbook">
+      <div class="pg left"><div class="pg-in" id="pgL"></div></div>
+      <div class="pg right"><div class="pg-in" id="pgR"></div></div>
+    </div>
+    <button class="turn next" data-r="next" aria-label="Next page"><span><svg><use href="#i-right"/></svg></span></button>
+  </div>
+  <div class="reader-foot">
+    <div class="foot-nav"><button data-r="prev" aria-label="Previous page"><svg><use href="#i-left"/></svg></button></div>
+    <div class="progress" aria-hidden="true"><i id="prog"></i></div>
+    <button class="resume" id="resumeBtn" hidden></button>
+    <div class="foot-nav"><button data-r="next" aria-label="Next page"><svg><use href="#i-right"/></svg></button></div>
+  </div>
+  <p class="sr" aria-live="polite" id="pageLive"></p>
+</div>
+
+<script>
+(() => {
+"use strict";
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+const store = {
+  get(k, d) { try { const v = localStorage.getItem("aec:" + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem("aec:" + k, JSON.stringify(v)); } catch {} },
+  del(k) { try { localStorage.removeItem("aec:" + k); } catch {} },
+};
+
+/* ================= state ================= */
+const state = {
+  stories: [],            // summaries + full seed stories, newest first
+  full: new Map(),        // id -> full story
+  filter: "all",
+  saved: new Set(store.get("saved", [])),
+  sound: store.get("sound", true),
+  size: store.get("size", 1),
+  status: null,
+  job: store.get("job", null),
+};
+
+/* ================= deterministic randomness for covers ================= */
+function hash(str) { let h = 2166136261; for (const c of String(str)) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
+function rng(seed) { let a = seed; return () => { a |= 0; a = (a + 0x6D2B79F5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+
+/* ================= illustrated covers (used when no painted cover exists) ================= */
+const PAL = {
+  compass: ["#0a2626", "#23524a", "#d9ecd9", "#C6A15B"],
+  forest: ["#12152c", "#2a4660", "#b7c8ff", "#9fd6b8"],
+  skyship: ["#23170f", "#b0703a", "#ffd9a0", "#E2C88E"],
+  cauldron: ["#170f09", "#4b3117", "#f0b865", "#7fe0a8"],
+  library: ["#05120e", "#12352a", "#f1c46d", "#E2C88E"],
+  island: ["#0a2033", "#2c6b82", "#d9f1ff", "#E2C88E"],
+  moon: ["#080c22", "#22386a", "#eef0ff", "#BFC6C9"],
+  castle: ["#06131a", "#1b3a3f", "#f3d38a", "#E2C88E"],
+  key: ["#110c1a", "#2c2442", "#f0cf7a", "#E2C88E"],
+  dragon: ["#190d0c", "#50301f", "#ffb574", "#E2C88E"],
+};
+function figure(x, y, s, lining = "#1F6A56", kind = "boy") {
+  const cloak = "#0a100e";
+  if (kind === "girl") return `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-5 -50c-3 -8 -3 -16 5 -18 8 2 10 10 6 18 6 4 8 14 8 22" fill="${cloak}"/><circle cx="0" cy="-57" r="8" fill="${cloak}"/><path d="M-6 -48C-15 -44-19-26-22 0L-25 16C-8 20 8 20 25 16L22 0C19-26 15-44 6-48Z" fill="${cloak}"/><path d="M-22 0L-25 16C-8 20 8 20 25 16" stroke="${lining}" stroke-width="1.6" fill="none" opacity=".8"/></g>`;
+  if (kind === "man") return `<g transform="translate(${x} ${y}) scale(${s})"><circle cx="0" cy="-78" r="10" fill="${cloak}"/><path d="M-8 -68C-22 -64-26-40-30 0L-32 22C-10 26 10 26 32 22L30 0C26-40 22-64 8-68Z" fill="${cloak}"/><path d="M-14 -86h28l-6 -18h-16z" fill="${cloak}"/><path d="M-20 -86h40" stroke="${cloak}" stroke-width="4"/></g>`;
+  return `<g transform="translate(${x} ${y}) scale(${s})"><circle cx="0" cy="-64" r="9" fill="${cloak}"/><path d="M-5 -72c4 -5 12 -3 13 3" stroke="${cloak}" stroke-width="5" fill="none"/><path d="M-7 -55C-18-50-23-30-27 0L-31 20C-10 25 10 25 31 20L27 0C23-30 18-50 7-55Z" fill="${cloak}"/><path d="M-27 0L-31 20C-10 25 10 25 31 20L27 0" stroke="${lining}" stroke-width="2" fill="none" opacity=".9"/><path d="M8 -40L20 -64" stroke="#3a2a18" stroke-width="2.4" stroke-linecap="round"/><circle cx="20.5" cy="-65" r="2.4" fill="#fff2c8"/><circle cx="20.5" cy="-65" r="7" fill="#fff2c8" opacity=".25"/></g>`;
+}
+function stars(r, n, maxY = 260) { let s = ""; for (let i = 0; i < n; i++) { const x = r() * 300, y = r() * maxY, z = r() * 1.3 + .3; s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${z.toFixed(2)}" fill="#fff" opacity="${(.35 + r() * .6).toFixed(2)}"/>`; } return s; }
+function castle(x, y, s, win) { return `<g transform="translate(${x} ${y}) scale(${s})" fill="#050d0c"><rect x="-60" y="-40" width="120" height="40"/><rect x="-70" y="-90" width="22" height="90"/><path d="M-73 -90l14 -34 14 34z"/><rect x="48" y="-80" width="20" height="80"/><path d="M45 -80l13 -30 13 30z"/><rect x="-24" y="-120" width="30" height="120"/><path d="M-28 -120l19 -44 19 44z"/><rect x="12" y="-96" width="22" height="96"/><path d="M9 -96l14 -32 14 32z"/><rect x="-44" y="-64" width="16" height="64"/><path d="M-47 -64l11 -22 11 22z"/><g fill="${win}"><rect x="-15" y="-100" width="4" height="7"/><rect x="-5" y="-84" width="4" height="7"/><rect x="-63" y="-70" width="4" height="6"/><rect x="18" y="-78" width="4" height="6"/><rect x="54" y="-60" width="4" height="6"/><rect x="-38" y="-48" width="3" height="5"/><rect x="-20" y="-30" width="4" height="6"/><rect x="30" y="-30" width="4" height="6"/></g></g>`; }
+function coverSVG(story) {
+  const motif = PAL[story.cover_motif] ? story.cover_motif : Object.keys(PAL)[hash(story.id) % 10];
+  const [top, bot, glow, acc] = PAL[motif];
+  const r = rng(hash(story.id || story.title));
+  const uid = "c" + (hash(story.id) % 1e7);
+  const chars = story.characters || [];
+  let scene = "", fx = 150, fy = 420, fs = 1.25, companions = "";
+  switch (motif) {
+    case "compass":
+      scene = `<circle cx="150" cy="185" r="90" fill="url(#${uid}g)"/><g transform="translate(150 185)" stroke="${acc}" fill="none"><circle r="46" stroke-width="3"/><circle r="38" stroke-width="1" opacity=".6"/><path d="M0 -58L7 -7 58 0 7 7 0 58 -7 7 -58 0 -7 -7Z" fill="${acc}" fill-opacity=".18" stroke-width="1.5"/><g transform="rotate(28)"><path d="M0 -36L6 0 0 36 -6 0Z" fill="${acc}" stroke="none"/><path d="M0 -36L6 0 -6 0Z" fill="#fff4d6" stroke="none"/></g><circle r="3" fill="#fff4d6" stroke="none"/></g>
+      <path d="M0 330L55 262 92 300 150 225 205 292 250 250 300 300V450H0Z" fill="#0c2a27"/><path d="M0 360L70 318 120 350 190 305 250 345 300 325V450H0Z" fill="#081c1a"/><path d="M0 400Q150 370 300 400V450H0Z" fill="#050f0e"/>`;
+      break;
+    case "forest": {
+      let trees = ""; for (let i = 0; i < 9; i++) { const x = i * 36 + r() * 16 - 8, w = 12 + r() * 14; trees += `<rect x="${x}" y="${60 + r() * 60}" width="${w}" height="400" fill="#07091a" opacity="${.75 + r() * .25}"/><circle cx="${x + w / 2}" cy="${80 + r() * 60}" r="${30 + r() * 26}" fill="#0a0e24" opacity=".9"/>`; }
+      let flies = ""; for (let i = 0; i < 16; i++) flies += `<circle cx="${r() * 300}" cy="${160 + r() * 230}" r="${1 + r() * 1.8}" fill="${acc}" opacity="${.5 + r() * .5}"/><circle cx="${r() * 300}" cy="${170 + r() * 220}" r="5" fill="${acc}" opacity=".12"/>`;
+      scene = `<ellipse cx="150" cy="260" rx="70" ry="150" fill="url(#${uid}g)"/>${trees}<path d="M110 450L140 250h20l30 200z" fill="${glow}" opacity=".08"/>${flies}<path d="M0 410Q150 385 300 410V450H0Z" fill="#05060f"/>`;
+      break; }
+    case "skyship":
+      scene = `<circle cx="150" cy="330" r="130" fill="url(#${uid}g)"/><g fill="#f6d7a8" opacity=".25"><ellipse cx="60" cy="300" rx="80" ry="16"/><ellipse cx="240" cy="270" rx="70" ry="12"/><ellipse cx="170" cy="340" rx="110" ry="14"/></g>
+      <g transform="translate(150 190)"><ellipse rx="78" ry="34" fill="#3b2517" stroke="${acc}" stroke-width="2"/><path d="M-78 0h156M-60 -22q60 -12 120 0M-60 22q60 12 120 0" stroke="${acc}" stroke-width="1" fill="none" opacity=".7"/><path d="M-40 34l-6 30M40 34l6 30M0 34v30" stroke="#2a1a10" stroke-width="1.5"/><path d="M-58 64h116l-14 22h-88z" fill="#24160d" stroke="${acc}" stroke-width="1.5"/><circle cx="-30" cy="75" r="3" fill="#ffd98f"/><circle cx="0" cy="75" r="3" fill="#ffd98f"/><circle cx="30" cy="75" r="3" fill="#ffd98f"/><g transform="translate(86 0)"><circle r="5" fill="${acc}"/><path d="M0 -18v36M-12 -12l24 24" stroke="${acc}" stroke-width="3"/></g><path d="M-78 0l-22 -16v32z" fill="#2a1a10" stroke="${acc}" stroke-width="1.2"/></g>
+      <path d="M0 395L60 380 110 392 170 372 230 388 300 376V450H0Z" fill="#1a0f08"/><path d="M0 420Q150 400 300 420V450H0Z" fill="#0f0905"/>`;
+      break;
+    case "cauldron": {
+      let b = ""; for (let i = 0; i < 14; i++) { const x = 95 + r() * 110, y = 120 + r() * 200, rr = 3 + r() * 12; b += `<circle cx="${x}" cy="${y}" r="${rr}" fill="none" stroke="${acc}" stroke-width="1.4" opacity="${.4 + r() * .5}"/>`; }
+      scene = `<rect x="30" y="70" width="240" height="190" rx="120" fill="url(#${uid}g)"/><path d="M40 70h220M40 120h220" stroke="#2d1d0e" stroke-width="3" opacity=".6"/>${b}
+      <ellipse cx="150" cy="316" rx="70" ry="14" fill="${acc}" opacity=".55"/><path d="M78 318c0 50 30 72 72 72s72-22 72-72z" fill="#0b0a08" stroke="#3a2a14" stroke-width="2"/><ellipse cx="150" cy="318" rx="74" ry="14" fill="none" stroke="#3a2a14" stroke-width="5"/><path d="M95 382l-10 30M205 382l10 30" stroke="#0b0a08" stroke-width="7"/><path d="M0 410H300V450H0Z" fill="#0d0805"/>`;
+      fx = 245; fy = 425; fs = 1.05;
+      break; }
+    case "library": {
+      let books = ""; for (const side of [0, 1]) for (let row = 0; row < 6; row++) { let x = side ? 214 : 6; const y = 70 + row * 58; while (x < (side ? 296 : 88)) { const w = 6 + r() * 8, h = 36 + r() * 16; books += `<rect x="${x.toFixed(1)}" y="${(y + 50 - h).toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" fill="hsl(${[150, 30, 5, 45][Math.floor(r() * 4)]} ${25 + r() * 25}% ${10 + r() * 12}%)"/>`; x += w + 1.5; } books += `<rect x="${side ? 210 : 0}" y="${y + 50}" width="90" height="5" fill="#1d130a"/>`; }
+      scene = `<path d="M100 450V120a50 50 0 01100 0V450z" fill="url(#${uid}g)"/>${books}<path d="M100 450V120a50 50 0 01100 0" fill="none" stroke="#1b120a" stroke-width="8"/><g transform="translate(236 174)" fill="#020605" opacity=".85"><ellipse rx="16" ry="11"/><ellipse cx="-6" cy="-20" rx="3.5" ry="12" transform="rotate(-12)"/><ellipse cx="4" cy="-20" rx="3.5" ry="12" transform="rotate(10)"/><circle cx="6" cy="-6" r="1.6" fill="${glow}"/></g><path d="M0 420H300V450H0Z" fill="#030a08"/>`;
+      break; }
+    case "island": {
+      let notes = ""; for (let i = 0; i < 7; i++) { const x = 30 + r() * 240, y = 90 + r() * 150; notes += `<g transform="translate(${x} ${y}) rotate(${-15 + r() * 30})" fill="${acc}" opacity=".75"><ellipse rx="4.5" ry="3.4"/><path d="M4 0v-18l7 4" stroke="${acc}" stroke-width="1.4" fill="none"/></g>`; }
+      scene = `<circle cx="205" cy="200" r="40" fill="${glow}" opacity=".9"/><circle cx="205" cy="200" r="90" fill="url(#${uid}g)"/>${notes}<path d="M70 330q60 -110 170 -10q-40 -20 -80 -8q-40 -34 -90 18z" fill="#082233" opacity=".9"/><path d="M0 330q40 -20 80 0t80 0 80 0 60 -6V450H0Z" fill="#0a3044"/><path d="M0 350q40 -14 80 0t80 0 80 0 60 -4" stroke="${glow}" stroke-width="1" fill="none" opacity=".5"/><path d="M150 330q10 -46 30 -60M180 272q-24 -6 -38 6M180 272q20 -12 34 -2" stroke="#061a14" stroke-width="4" fill="none"/><path d="M110 338q60 -40 130 0z" fill="#061a14"/><path d="M0 390q75 -16 150 0t150 0V450H0Z" fill="#061c28"/>`;
+      fy = 440;
+      break; }
+    case "moon": {
+      let steps = ""; for (let i = 0; i < 7; i++) steps += `<rect x="${40 + i * 30}" y="${370 - i * 26}" width="34" height="9" rx="2" fill="#1b2446" stroke="${acc}" stroke-width=".8" opacity="${1 - i * .1}"/>`;
+      scene = `<circle cx="160" cy="205" r="120" fill="url(#${uid}g)"/><circle cx="160" cy="205" r="56" fill="${glow}"/><circle cx="176" cy="198" r="53" fill="#0b1230"/><circle cx="160" cy="205" r="60" fill="none" stroke="${glow}" stroke-width="1" opacity=".6"/>${steps}<path d="M0 410Q150 380 300 410V450H0Z" fill="#050818"/>`;
+      break; }
+    case "castle":
+      scene = `<circle cx="218" cy="150" r="26" fill="${glow}" opacity=".85"/><circle cx="218" cy="150" r="80" fill="url(#${uid}g)"/>${castle(150, 330, 1.1, glow)}<path d="M0 330H300V450H0Z" fill="#081b20"/><g opacity=".25" transform="translate(0 660) scale(1 -1)">${castle(150, 330, 1.1, glow)}</g><path d="M0 400Q150 380 300 400V450H0Z" fill="#040b0d"/>`;
+      break;
+    case "key":
+      scene = `<path d="M70 450V190a80 80 0 01160 0V450z" fill="#1d1730" stroke="${acc}" stroke-width="2"/><path d="M84 450V192a66 66 0 01132 0V450z" fill="url(#${uid}g)"/><g transform="translate(150 250)" fill="#06040c"><circle r="16"/><path d="M-9 8h18l8 50h-34z"/></g><g transform="translate(150 250)" fill="${glow}" opacity=".5"><circle r="8"/></g><path d="M0 410H300V450H0Z" fill="#07050c"/>`;
+      break;
+    case "dragon":
+      scene = `<circle cx="150" cy="170" r="120" fill="url(#${uid}g)"/><g transform="translate(150 160)" fill="#0c0605"><path d="M-10 0c-40 -30 -90 -40 -120 -20 30 -2 50 10 70 30 -20 -2 -40 4 -55 16 30 -6 60 -4 90 6z"/><path d="M10 0c40 -30 90 -40 120 -20 -30 -2 -50 10 -70 30 20 -2 40 4 55 16 -30 -6 -60 -4 -90 6z"/><ellipse rx="16" ry="30"/><path d="M0 -26c6 -14 18 -20 26 -16 -6 2 -10 6 -12 12z"/><path d="M0 28c-4 30 10 50 30 56" stroke="#0c0605" stroke-width="7" fill="none"/></g><path d="M0 360L80 320 150 350 220 310 300 340V450H0Z" fill="#1f110b"/><path d="M0 410Q150 390 300 410V450H0Z" fill="#0c0705"/>`;
+      break;
+  }
+  // Stories without a hand-designed seed cover get their own palette shift and composition
+  const vary = !story.seed;
+  const hv = hash((story.id || "") + "v");
+  const hue = vary ? [35, -35, 70, -70, 110, -110, 150][hv % 7] : 0;
+  const flip = vary && (hv >> 3) % 2 === 1;
+  if (vary && !["cauldron"].includes(motif)) fx += ((hv >> 5) % 3 - 1) * 34;
+  if (chars.includes("Alysia")) companions += figure(fx - 42, fy + 4, fs * .85, "#8a5a7a", "girl");
+  if (chars.includes("Tito")) companions += figure(fx + 46, fy + 4, fs * .95, "#1F6A56", "man");
+  return `<svg viewBox="0 0 300 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrated cover for ${esc(story.title)}"><defs><linearGradient id="${uid}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${top}"/><stop offset="1" stop-color="${bot}"/></linearGradient><radialGradient id="${uid}g"><stop offset="0" stop-color="${glow}" stop-opacity=".55"/><stop offset="1" stop-color="${glow}" stop-opacity="0"/></radialGradient><radialGradient id="${uid}v" cx=".5" cy=".45" r=".75"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient></defs>${hue ? `<filter id="${uid}h"><feColorMatrix type="hueRotate" values="${hue}"/></filter>` : ""}<g${hue ? ` filter="url(#${uid}h)"` : ""}><rect width="300" height="450" fill="url(#${uid}s)"/>${["cauldron", "library", "key"].includes(motif) ? "" : stars(r, vary ? 30 + (hv % 50) : 50)}<g${flip ? ' transform="translate(300 0) scale(-1 1)"' : ""}>${scene}</g></g>${companions}${figure(fx, fy, fs)}<rect width="300" height="450" fill="url(#${uid}v)"/></svg>`;
+}
+function byline(story) {
+  const c = (story.characters || []).filter((x) => x !== "Arhaan");
+  if (!c.length) return "An Arhaan Adventure";
+  if (c.length === 1) return `An Arhaan &amp; ${esc(c[0])} Adventure`;
+  return `An Arhaan, ${c.slice(0, -1).map(esc).join(", ")} &amp; ${esc(c[c.length - 1])} Adventure`;
+}
+function coverHTML(story, { withSub = false } = {}) {
+  const art = story.cover_image_url
+    ? `<img src="${esc(story.cover_image_url)}" alt="Cover illustration for ${esc(story.title)}" loading="lazy" decoding="async" onerror="this.parentNode.innerHTML=window.__coverSVG(this.dataset.id)" data-id="${esc(story.id)}">`
+    : coverSVG(story);
+  return `<div class="cover"><div class="art">${art}</div><div class="spine"></div><div class="c-title">${esc(story.title)}</div>${withSub && story.subtitle ? `<div class="c-sub">${esc(story.subtitle)}</div>` : ""}<div class="c-by"${(story.characters || []).length > 2 ? ' style="font-size:4.8cqw"' : ""}>${byline(story)}</div></div>`;
+}
+window.__coverSVG = (id) => { const s = state.stories.find((x) => x.id === id); return s ? coverSVG({ ...s, cover_image_url: null }) : ""; };
+
+/* ================= hero art ================= */
+/* Painted artwork slots. Drop the files into /assets/art/ and set the paths here;
+   the drawn scene stays underneath as a fallback and the moving layers sit on top. */
+const ART = { hero: true };
+
+function candleHTML(r, n, box) {
+  let h = "";
+  for (let i = 0; i < n; i++) {
+    const s = (.55 + r() * .75).toFixed(2), far = s < .8;
+    const [x0, x1, y0, y1] = box;
+    h += `<span class="candle${far ? " far" : ""}" style="left:${(x0 + r() * (x1 - x0)).toFixed(1)}%;top:${(y0 + r() * (y1 - y0)).toFixed(1)}%;--s:${s};--d:${(5 + r() * 5).toFixed(1)}s;--delay:-${(r() * 8).toFixed(1)}s;--f:${(.7 + r() * .6).toFixed(2)}s"></span>`;
+  }
+  return h;
+}
+function heroArt() {
+  const r = rng(7);
+  const VB = `viewBox="0 0 1400 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"`;
+  const T = [[830,380,26,120,46],[872,372,20,160,58],[905,370,44,110,40],[962,366,30,210,70],[1004,366,52,130,44],[1068,362,34,250,84],[1114,362,40,150,52],[1166,360,24,190,64],[1204,362,44,120,40],[1258,366,22,150,50]];
+  const sky = `<svg ${VB}><defs>
+  <linearGradient id="hs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#030e0d"/><stop offset=".5" stop-color="#0b2728"/><stop offset="1" stop-color="#15413c"/></linearGradient>
+  <radialGradient id="hm"><stop offset="0" stop-color="#e9f3ea" stop-opacity=".6"/><stop offset=".4" stop-color="#bcd6cc" stop-opacity=".18"/><stop offset="1" stop-color="#e9f3ea" stop-opacity="0"/></radialGradient>
+  <radialGradient id="mf" cx=".4" cy=".35"><stop offset="0" stop-color="#fbfdf6"/><stop offset=".7" stop-color="#e3ebdf"/><stop offset="1" stop-color="#c9d5c7"/></radialGradient></defs>
+  <rect width="1400" height="600" fill="url(#hs)"/>
+  ${Array.from({ length: 160 }, (_, i) => `<circle ${i % 4 === 0 ? `class="tw" style="animation-delay:-${(r() * 6).toFixed(1)}s;animation-duration:${(2.5 + r() * 4).toFixed(1)}s"` : ""} cx="${(r() * 1400).toFixed(0)}" cy="${(r() * 360).toFixed(0)}" r="${(r() * 1.3 + .3).toFixed(2)}" fill="#fff" opacity="${(.25 + r() * .6).toFixed(2)}"/>`).join("")}
+  <circle cx="860" cy="128" r="210" fill="url(#hm)"/><circle cx="860" cy="128" r="46" fill="url(#mf)"/><circle cx="846" cy="116" r="9" fill="#cfd9cc" opacity=".55"/><circle cx="874" cy="142" r="6" fill="#cfd9cc" opacity=".5"/><circle cx="866" cy="108" r="4" fill="#cfd9cc" opacity=".45"/>
+  <path d="M0 410L120 350 230 372 330 330 470 364 560 342 660 372 760 336 900 360 1000 330 1120 352 1240 326 1400 350V600H0Z" fill="#0b2322" opacity=".9"/></svg>`;
+  let wins = "";
+  T.forEach(([x, by, tw, h]) => { for (let k = 0; k < Math.floor(h / 46); k++) if (r() > .3) { const wx = x + tw / 2 - 2.5, wy = by - h + 18 + k * 44; wins += `<path class="win" style="animation-delay:-${(r() * 9).toFixed(1)}s;animation-duration:${(3 + r() * 6).toFixed(1)}s" d="M${wx} ${wy + 10}v-6a2.5 2.5 0 015 0v6z"/>`; } });
+  for (let i = 0; i < 18; i++) { const wx = 830 + r() * 440, wy = 318 + r() * 44; wins += `<path class="win" style="animation-delay:-${(r() * 9).toFixed(1)}s;animation-duration:${(3 + r() * 6).toFixed(1)}s" d="M${wx.toFixed(0)} ${wy.toFixed(0)}v-5a2 2 0 014 0v5z"/>`; }
+  let body = `<rect x="820" y="300" width="470" height="80"/>`;
+  for (let x = 822; x < 1286; x += 14) body += `<rect x="${x}" y="292" width="8" height="10"/>`;
+  T.forEach(([x, by, w, h, rf]) => { body += `<rect x="${x}" y="${by - h}" width="${w}" height="${h}"/><path d="M${x - 4} ${by - h}L${x + w / 2} ${by - h - rf}L${x + w + 4} ${by - h}Z"/><rect x="${x - 3}" y="${by - h - 2}" width="${w + 6}" height="5"/><path d="M${x + w / 2} ${by - h - rf}v-14" stroke="#051110" stroke-width="2"/>`; });
+  const castle = `<svg ${VB}><defs><filter id="glowW"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <path d="M760 430C800 380 840 372 880 360L1260 350C1300 370 1330 400 1360 430Z" fill="#061513"/>
+  <g fill="#051110">${body}</g><g fill="#f6cf7c" filter="url(#glowW)">${wins}</g>
+  <path d="M420 424H830" stroke="#051110" stroke-width="12"/>${Array.from({ length: 8 }, (_, i) => `<path d="M${430 + i * 50} 472a21 30 0 0142 0" fill="none" stroke="#051110" stroke-width="9"/>`).join("")}<path d="M420 418V472" stroke="#051110" stroke-width="10"/></svg>`;
+  const lake = `<svg ${VB}><defs><linearGradient id="hl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d2f2e"/><stop offset="1" stop-color="#030d0c"/></linearGradient></defs>
+  <rect y="420" width="1400" height="180" fill="url(#hl)"/>
+  <g opacity=".16" fill="#1a4a44">${[[962,366,30,210],[1068,362,34,250],[1166,360,24,190],[872,372,20,160]].map(([x, by, w, h]) => `<rect x="${x}" y="430" width="${w}" height="${h * .5}"/>`).join("")}</g>
+  <g fill="#f3cf82">${Array.from({ length: 26 }, () => `<rect class="shim" style="animation-delay:-${(r() * 5).toFixed(1)}s" x="${(820 + r() * 460).toFixed(0)}" y="${(440 + r() * 100).toFixed(0)}" width="${(10 + r() * 30).toFixed(0)}" height="1.4"/>`).join("")}</g>
+  <g fill="#e9f3ea">${Array.from({ length: 8 }, (_, i) => `<rect class="shim" style="animation-delay:-${(r() * 5).toFixed(1)}s" x="${(820 + r() * 80).toFixed(0)}" y="${438 + i * 9}" width="${(20 + r() * 50).toFixed(0)}" height="1.3"/>`).join("")}</g></svg>`;
+  const fg = `<svg ${VB}><path d="M0 470C80 430 150 460 210 420 260 460 330 440 400 480V600H0Z" fill="#020908"/>
+  <g fill="#020908">${Array.from({ length: 10 }, (_, i) => { const x = 1230 + i * 20, h = 100 + r() * 70; return `<path d="M${x} 620V${520 - h}l-15 ${h * .55}h30z"/>`; }).join("")}</g></svg>`;
+  const owl = `<svg class="owl" viewBox="0 0 120 60" aria-hidden="true"><g fill="#050d0c"><ellipse cx="60" cy="34" rx="11" ry="14"/><circle cx="60" cy="20" r="8"/><path d="M54 14l2-6 3 5zM66 14l-2-6-3 5z"/><g class="wing l"><path d="M52 30C40 18 20 16 4 24c14 2 26 6 36 14 4-2 8-4 12-8z"/></g><g class="wing r"><path d="M68 30C80 18 100 16 116 24c-14 2-26 6-36 14-4-2-8-4-12-8z"/></g></g><circle cx="57" cy="20" r="1.4" fill="#f3cf82"/><circle cx="63" cy="20" r="1.4" fill="#f3cf82"/></svg>`;
+  if (ART.hero) {
+    // The painted scene is already in the page; once it has loaded, add the moving layers on top:
+    // drifting cloud, rolling mist, glinting sparkles and bobbing, flickering candles.
+    const img = document.getElementById("heroImg");
+    const addFx = () => {
+      if (document.querySelector(".fx-mist")) return;
+      $("#heroArt").insertAdjacentHTML("beforeend", `
+        <div class="layer clouds" data-depth=".22"><i style="top:4%;--d:110s;--delay:-30s;width:44%"></i><i style="top:16%;--d:150s;--delay:-90s;width:36%"></i></div>
+        <div class="layer" data-depth=".35"><i class="fx-sparkles"></i></div>
+        <div class="layer fx-mist" data-depth=".55"><i class="m1"></i><i class="m2"></i></div>
+        <div class="layer fx-candles" data-depth=".85"><i class="c1"></i><i class="c2"></i></div>`);
+      parallax();
+    };
+    if (img.complete) addFx(); else { img.addEventListener("load", addFx, { once: true }); img.addEventListener("error", addFx, { once: true }); }
+    return;
+  }
+  $("#heroArt").innerHTML = `
+    <div class="layer" data-depth=".15">${sky}</div>
+    <div class="layer clouds" data-depth=".25"><i style="top:8%;--d:95s;--delay:-20s;width:46%"></i><i style="top:20%;--d:140s;--delay:-80s;width:38%"></i><i style="top:2%;--d:120s;--delay:-50s;width:30%;opacity:.5"></i></div>
+    <div class="layer" data-depth=".45">${castle}</div><div class="layer" data-depth=".45">${lake}</div>
+    <div class="layer mist" data-depth=".6"><i class="m1"></i><i class="m2"></i></div>
+    <div class="layer candles" data-depth=".8">${(innerWidth < 760 ? candleHTML(rng(11), 5, [58, 96, 3, 22]) : candleHTML(rng(11), 13, [50, 97, 4, 40]))}</div>
+    <div class="layer" data-depth="1">${fg}</div>
+    <div class="owl-track" aria-hidden="true">${owl}</div>`;
+}
+
+/* gentle parallax: layers drift at different depths as you scroll or move the mouse */
+function parallax() {
+  if (reduced() || parallax.done) return;
+  parallax.done = true;
+  const hero = document.querySelector(".hero"), layers = [...document.querySelectorAll("#heroArt .layer")];
+  let mx = 0, my = 0, tx = 0, ty = 0, raf = 0;
+  const fine = matchMedia("(hover:hover) and (pointer:fine)").matches;
+  if (fine) hero.addEventListener("pointermove", (e) => { const b = hero.getBoundingClientRect(); mx = (e.clientX - b.left) / b.width - .5; my = (e.clientY - b.top) / b.height - .5; kick(); });
+  addEventListener("scroll", kick, { passive: true });
+  function kick() { if (!raf) raf = requestAnimationFrame(tick); }
+  function tick() {
+    raf = 0;
+    tx += (mx - tx) * .08; ty += (my - ty) * .08;
+    const sy = Math.min(scrollY, 900);
+    layers.forEach((l) => { const d = +l.dataset.depth; l.style.transform = `translate3d(${(-tx * 26 * d).toFixed(2)}px, ${(-ty * 14 * d + sy * .12 * d).toFixed(2)}px, 0)`; });
+    if (Math.abs(mx - tx) > .001 || Math.abs(my - ty) > .001) kick();
+  }
+  tick();
+}
+
+/* ================= sparkles ================= */
+function sparkles() {
+  if (reduced()) return;
+  const box = $("#sparkles"); const r = rng(42); let h = "";
+  for (let i = 0; i < 22; i++) h += `<i style="left:${(r() * 100).toFixed(1)}%;top:${(20 + r() * 80).toFixed(1)}%;animation-duration:${(9 + r() * 10).toFixed(1)}s;animation-delay:-${(r() * 18).toFixed(1)}s"></i>`;
+  box.innerHTML = h;
+}
+
+/* ================= sound: soft page rustle, generated (no audio files) ================= */
+let actx;
+function rustle() {
+  if (!state.sound) return;
+  try {
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    if (actx.state === "suspended") actx.resume();
+    const dur = .32, n = Math.floor(actx.sampleRate * dur), buf = actx.createBuffer(1, n, actx.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < n; i++) { const t = i / n; d[i] = (Math.random() * 2 - 1) * Math.pow(Math.sin(Math.PI * t), 1.6) * (0.6 + 0.4 * Math.sin(t * 38)); }
+    const src = actx.createBufferSource(); src.buffer = buf;
+    const bp = actx.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 2600; bp.Q.value = .7;
+    const g = actx.createGain(); g.gain.value = .09;
+    src.connect(bp).connect(g).connect(actx.destination); src.start();
+  } catch {}
+}
+function syncSound() {
+  $$('[data-action="sound"]').forEach((b) => { b.setAttribute("aria-pressed", String(state.sound)); b.setAttribute("aria-label", state.sound ? "Page sounds on (tap to mute)" : "Page sounds off (tap to turn on)"); b.querySelector("use").setAttribute("href", state.sound ? "#i-sound" : "#i-mute"); });
+}
+
+/* ================= toast ================= */
+let toastTimer;
+function toast(msg, action) {
+  $(".toast")?.remove(); clearTimeout(toastTimer);
+  const t = document.createElement("div"); t.className = "toast"; t.setAttribute("role", "status");
+  t.innerHTML = `<span>${esc(msg)}</span>`;
+  if (action) { const b = document.createElement("button"); b.textContent = action.label; b.onclick = () => { t.remove(); action.fn(); }; t.append(b); }
+  document.body.append(t); toastTimer = setTimeout(() => t.remove(), action ? 9000 : 3800);
+}
+
+/* ================= data ================= */
+async function loadLibrary() {
+  let seeds = [], generated = [];
+  try { const r = await fetch("/data/seed-stories.json"); if (r.ok) seeds = await r.json(); } catch {}
+  try { const r = await fetch("/api/stories", { cache: "no-store" }); if (r.ok) generated = (await r.json()).stories || []; } catch {}
+  seeds.forEach((s) => { s.seed = true; state.full.set(s.id, s); });
+  const seen = new Set();
+  state.stories = [...generated, ...seeds].filter((s) => (seen.has(s.id) ? false : seen.add(s.id)))
+    .sort((a, b) => String(b.created_at).localeCompare(String(a.created_at)));
+  renderShelf();
+}
+async function getFull(id) {
+  if (state.full.has(id)) return state.full.get(id);
+  const r = await fetch(`/api/stories/${encodeURIComponent(id)}`);
+  if (!r.ok) throw new Error("Story not found");
+  const s = await r.json(); state.full.set(id, s); return s;
+}
+
+/* ================= shelf ================= */
+function visibleStories() {
+  const f = state.filter;
+  if (f === "saved") return state.stories.filter((s) => state.saved.has(s.id));
+  if (f === "Alysia" || f === "Tito") return state.stories.filter((s) => (s.characters || []).includes(f));
+  return state.stories;
+}
+function renderShelf(highlightId) {
+  const shelf = $("#shelf"), list = visibleStories();
+  $("#nAll").textContent = state.stories.length;
+  $("#nSaved").textContent = state.stories.filter((s) => state.saved.has(s.id)).length;
+  $$(".chip").forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.filter === state.filter)));
+  if (typeof syncNav === "function") syncNav();
+  let html = "";
+  if (state.job && state.filter === "all") html += `<div class="slot" role="listitem"><div class="book writing" aria-label="A new story is being written"><div class="cover"><div class="spine"></div><svg class="quill-ico" viewBox="0 0 120 120"><use href="#i-quill"/></svg><div class="c-title" style="font-size:10cqw">A new adventure…</div><div class="c-by">Being written</div></div></div></div>`;
+  html += list.map((s) => `<div class="slot" role="listitem"><button class="book${s.id === highlightId ? " is-new" : ""}" data-id="${esc(s.id)}" aria-label="Open ${esc(s.title)}${state.saved.has(s.id) ? " (saved)" : ""}">${state.saved.has(s.id) ? '<span class="fav-mark" aria-hidden="true"></span>' : ""}${coverHTML(s)}</button></div>`).join("");
+  shelf.innerHTML = html;
+  const empty = $("#shelfEmpty");
+  if (!list.length && !(state.job && state.filter === "all")) {
+    empty.hidden = false;
+    empty.innerHTML = state.filter === "saved"
+      ? `<div class="shelf-empty"><strong>No saved stories yet</strong>Open a book and tap the bookmark to keep it here.</div>`
+      : state.filter === "all" ? `<div class="shelf-empty"><strong>The shelf is waiting</strong>Generate Arhaan's first adventure to begin the library.</div>`
+      : `<div class="shelf-empty"><strong>No stories with ${esc(state.filter)} yet</strong>Choose “Include ${esc(state.filter)}: yes” when you generate the next one.</div>`;
+  } else empty.hidden = true;
+  shelf.parentElement.hidden = !list.length && !(state.job && state.filter === "all");
+  updateArrows();
+}
+function updateArrows() {
+  const s = $("#shelf");
+  $("#shelfPrev").disabled = s.scrollLeft < 8;
+  $("#shelfNext").disabled = s.scrollLeft + s.clientWidth >= s.scrollWidth - 8;
+}
+
+/* ================= reader layout ================= */
+const reader = $("#reader"), rbook = $("#rbook"), pgL = $("#pgL"), pgR = $("#pgR");
+let R = null; // current reading session
+
+// Book art geometry (book-spread.webp, 1600x1050): the two pages occupy x 342-1258, y 108-815;
+// the whole painted book (leather + corners) spans x 174-1427, y 95-927.
+const BOOK = { pageL: 342, pageT: 108, pageW: 458, pageH: 707, visW: 1253, visH: 832, below: 112, above: 13 };
+function layout() {
+  const vw = innerWidth, vh = innerHeight;
+  const barH = 64, footH = 56;
+  const availH = vh - barH - footH - 12;
+  if (vw >= 900) {
+    const side = vw >= 1200 ? 150 : 24; // on tablets the page arrows move to the footer so the book can be bigger
+    const s = Math.min((vw - side) / BOOK.visW, availH / BOOK.visH, 1.2);
+    if (s >= 0.6) return { mode: "spread", s, pageW: Math.round(BOOK.pageW * s), pageH: Math.round(BOOK.pageH * s) };
+  }
+  const pageW = Math.min(vw - 12, 700);
+  const pageH = Math.min(availH + 8, Math.round(pageW * 1.75));
+  return { mode: "single", pageW: Math.round(pageW), pageH: Math.round(pageH) };
+}
+function applyLayout() {
+  const L = layout(); R.L = L;
+  rbook.className = "reader-book " + L.mode + (L.mode === "spread" ? " art" : "");
+  reader.classList.toggle("single-mode", L.mode === "single");
+  $$(".pg", rbook).forEach((p) => { p.style.width = L.pageW + "px"; p.style.height = L.pageH + "px"; });
+  rbook.style.width = (L.mode === "spread" ? L.pageW * 2 : L.pageW) + "px";
+  rbook.style.height = L.pageH + "px";
+  rbook.style.setProperty("--s", L.s || 1);
+  rbook.style.setProperty("--pw", L.pageW + "px");
+  rbook.style.setProperty("--ph", L.pageH + "px");
+  // keep the whole painted book optically centred (its leather extends further below the pages than above)
+  rbook.style.marginBottom = L.mode === "spread" ? Math.round((BOOK.below - BOOK.above) * L.s) + "px" : "0px";
+  reader.classList.toggle("compact-nav", L.mode === "spread" && innerWidth < 1200);
+  const base = L.mode === "spread" ? Math.max(18, Math.min(21, L.pageW / 22)) : Math.max(18, Math.min(L.pageW >= 600 ? 24 : 20.5, L.pageW / 18.5));
+  document.documentElement.style.setProperty("--read-size", (base * [0.9, 1, 1.14][state.size]).toFixed(1) + "px");
+}
+
+/* leaves: title, story pages, end (+ blank to complete the last spread) */
+/* Pagination: story text is flowed onto as many book pages as it needs at the current
+   size, like a real book. Nothing is ever hidden below the fold of a page. */
+function smart(t) {
+  return String(t).replace(/(^|[\s(\[“‘—-])"/g, "$1“").replace(/"/g, "”").replace(/(^|[\s(\[“—-])'/g, "$1‘").replace(/'/g, "’");
+}
+function splitParas(text) { return String(text).split(/\n\s*\n|\n/).map((t) => t.trim()).filter(Boolean).map(smart); }
+function wc(t) { return String(t).split(/\s+/).filter(Boolean).length; }
+function sheetHTML(sh) {
+  const body = sh.blocks.map((b, k) => b.h != null
+    ? `<h3 class="pg-head${k ? " mid" : ""}">${esc(b.h)}</h3>`
+    : `<p class="${b.cont ? "cont" : ""}${b.first ? " dropcap" : ""}">${esc(b.p)}</p>`).join("");
+  return `<p class="pg-num" aria-label="Page ${sh.n}">${sh.n}</p><div class="pg-text">${body}</div><div class="pg-foot" aria-hidden="true"><svg><use href="#i-sparkle"/></svg></div>`;
+}
+let measurer;
+function measureBox() {
+  const L = R.L;
+  if (!measurer) {
+    measurer = document.createElement("div");
+    measurer.setAttribute("aria-hidden", "true");
+    measurer.style.cssText = "position:fixed;left:-10000px;top:0;visibility:hidden;pointer-events:none";
+    measurer.innerHTML = `<div class="reader-book"><div class="pg right"><div class="pg-in"></div></div></div>`;
+    document.body.append(measurer);
+  }
+  const mb = measurer.firstElementChild;
+  mb.className = "reader-book measure " + L.mode + (L.mode === "spread" ? " art" : "");
+  mb.style.setProperty("--pw", L.pageW + "px"); mb.style.setProperty("--ph", L.pageH + "px"); mb.style.setProperty("--s", L.s || 1);
+  const pg = measurer.querySelector(".pg");
+  pg.style.width = L.pageW + "px"; pg.style.height = L.pageH + "px";
+  return measurer.querySelector(".pg-in");
+}
+// Text flows continuously from one story section into the next, like a printed book.
+// Each sheet remembers the word it starts on, so resizing never loses the reader's place.
+function paginate(story) {
+  const box = measureBox();
+  const sheets = [];
+  let g = 0;
+  const newSheet = () => ({ type: "page", n: sheets.length + 1, blocks: [], start: g });
+  let sh = newSheet();
+  const fits = () => { box.innerHTML = sheetHTML(sh); return box.scrollHeight <= box.clientHeight + 1; };
+  const flush = () => { sheets.push(sh); sh = newSheet(); };
+  const fresh = () => sh.blocks.every((b) => b.h != null);
+  story.pages.forEach((p, i) => {
+    const paras = splitParas(p.text);
+    if (p.heading) {
+      if (!fresh()) {
+        // a heading must never sit alone at the foot of a page
+        const w = (paras[0] || "").split(/\s+/);
+        sh.blocks.push({ h: p.heading }, { p: w.slice(0, Math.min(16, w.length)).join(" ") });
+        const ok = fits();
+        sh.blocks.splice(-2, 2);
+        if (!ok) flush();
+      }
+      sh.blocks.push({ h: p.heading });
+    }
+    const queue = [...paras];
+    let cont = false, firstPara = true;
+    while (queue.length) {
+      const para = queue.shift();
+      const blk = { p: para, cont, first: i === 0 && firstPara && !cont };
+      sh.blocks.push(blk);
+      if (fits()) { g += wc(para); firstPara = false; cont = false; continue; }
+      sh.blocks.pop();
+      const words = para.split(/\s+/);
+      let lo = 0, hi = words.length - 1;
+      while (lo < hi) { const mid = Math.ceil((lo + hi) / 2); sh.blocks.push({ ...blk, p: words.slice(0, mid).join(" ") }); const ok = fits(); sh.blocks.pop(); if (ok) lo = mid; else hi = mid - 1; }
+      // split the paragraph across the page turn, leaving at least a few words to carry over
+      let cut = lo;
+      if (words.length - cut < 3 && !fresh()) cut = words.length - 3;
+      if (cut >= 1 && (fresh() || cut >= 6)) {
+        sh.blocks.push({ ...blk, p: words.slice(0, cut).join(" ") });
+        g += cut; queue.unshift(words.slice(cut).join(" ")); cont = true; firstPara = false; flush(); continue;
+      }
+      if (fresh()) { sh.blocks.push(blk); g += wc(para); firstPara = false; cont = false; flush(); continue; } // too big for any page: let it scroll
+      queue.unshift(para);
+      // never leave a heading stranded at the foot of a page: carry it over with its text
+      const carry = sh.blocks.length && sh.blocks[sh.blocks.length - 1].h != null ? sh.blocks.pop() : null;
+      flush();
+      if (carry) sh.blocks.push(carry);
+    }
+  });
+  if (sh.blocks.length) sheets.push(sh);
+  return sheets;
+}
+function buildLeaves(story) {
+  return [{ type: "title" }, ...paginate(story), { type: "end" }];
+}
+function leafHTML(leaf, story) {
+  if (!leaf) return { cls: "pg-blank", html: `<svg aria-hidden="true"><use href="#i-serpent"/></svg>` };
+  if (leaf.type === "title") return { cls: "pg-title", html: coverHTML(story, { withSub: true }) };
+  if (leaf.type === "end") return { cls: "pg-end", html: `<svg class="serp" aria-hidden="true"><use href="#i-serpent"/></svg><p class="fin">The End</p><p class="fin-sub">…until Arhaan's next adventure.</p><div class="end-actions"><button class="btn-ink" data-r="another"><svg><use href="#i-book"/></svg>Read another adventure</button><button class="btn-ink alt" data-r="newstory"><svg><use href="#i-sparkle"/></svg>Generate another story</button><button class="btn-ink alt" data-r="restart">Read this one again</button></div>` };
+  return { cls: "", html: sheetHTML(leaf) };
+}
+function sheetForWord(w) {
+  let idx = -1;
+  R.leaves.forEach((x, k) => { if (x.type === "page" && x.start <= w) idx = k; });
+  return idx;
+}
+function reflow(anchor) {
+  applyLayout();
+  R.leaves = buildLeaves(R.story);
+  let idx = 0;
+  if (anchor != null) idx = Math.max(0, sheetForWord(anchor));
+  R.view = viewForLeaf(idx);
+  R.reflowing = true; paint(R.view); R.reflowing = false;
+  R.anchor = anchor;
+}
+// The reading position is a word, kept steady across re-pagination (resize / text size)
+// so repeated reflows can never creep backwards.
+function currentStoryPage() { return R.anchor ?? null; }
+function viewCount() { return R.L.mode === "spread" ? Math.ceil(R.leaves.length / 2) : R.leaves.length; }
+function viewLeaves(v) { return R.L.mode === "spread" ? [R.leaves[v * 2], R.leaves[v * 2 + 1]] : [null, R.leaves[v]]; }
+function paint(v) {
+  const [l, r] = viewLeaves(v), story = R.story;
+  const a = leafHTML(l, story), b = leafHTML(r, story);
+  if (R.L.mode === "spread") { pgL.className = "pg-in " + a.cls; pgL.innerHTML = a.html; pgL.scrollTop = 0; }
+  pgR.className = "pg-in " + b.cls; pgR.innerHTML = b.html; pgR.scrollTop = 0;
+  const total = viewCount();
+  $$('[data-r="prev"]').forEach((x) => (x.disabled = v <= 0));
+  $$('[data-r="next"]').forEach((x) => (x.disabled = v >= total - 1));
+  requestAnimationFrame(fadeHints);
+  $("#prog").style.transform = `scaleX(${total > 1 ? v / (total - 1) : 1})`;
+  const nums = [l, r].filter((x) => x && x.type === "page").map((x) => x.n);
+  $("#pageLive").textContent = nums.length ? `Page ${nums.join(" and ")}` : (r && r.type === "end") || (l && l.type === "end") ? "The end" : "Title page";
+  // bookmark: remember which part of the story is on screen (survives re-pagination)
+  const shown = [l, r].filter((x) => x && x.type === "page");
+  if (!R.reflowing) R.anchor = shown.length ? shown[0].start : null;
+  if ([l, r].some((x) => x && x.type === "end")) store.del("pos:" + R.story.id);
+  else if (shown.length && shown[0].start > 0) store.set("pos:" + R.story.id, { w: shown[0].start });
+}
+function fadeHints() {
+  [pgL, pgR].forEach((el) => { const more = el.scrollHeight - el.clientHeight - el.scrollTop > 6; el.parentElement.style.setProperty("--fade", more ? "1" : "0"); });
+}
+[pgL, pgR].forEach((el) => el.addEventListener("scroll", fadeHints, { passive: true }));
+function viewForLeaf(i) { return R.L.mode === "spread" ? Math.floor(i / 2) : i; }
+
+/* ================= open / close animation ================= */
+function rectCenter(r) { return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; }
+// The cover is a 3D leaf inside a flat wrapper: rotation happens on the leaf, fading on the
+// wrapper, so fading never flattens the 3D faces (which would show the cover mirrored).
+function coverLeafEl() {
+  const el = document.createElement("div"); el.className = "cover-wrap";
+  el.innerHTML = `<div class="cover-leaf"><div class="front">${coverHTML(R.story)}</div><div class="back"><svg aria-hidden="true"><use href="#i-serpent"/></svg></div></div>`;
+  return el;
+}
+const PERSP = "perspective(2400px) ";
+function bookTransformFrom(srcRect) {
+  // transform that places the closed book (right page + cover) exactly over srcRect
+  const L = R.L, bookRect = rbook.getBoundingClientRect();
+  const pageLeft = L.mode === "spread" ? bookRect.left + L.pageW : bookRect.left;
+  const scale = srcRect.width / L.pageW;
+  const tx = srcRect.left - (bookRect.left + (pageLeft - bookRect.left) * scale);
+  const ty = srcRect.top + srcRect.height / 2 - (bookRect.top + L.pageH * scale / 2);
+  return { tx, ty, scale };
+}
+function centreTransform() {
+  const L = R.L, bookRect = rbook.getBoundingClientRect();
+  if (L.mode !== "spread") return { tx: bookRect.left, ty: bookRect.top, s: 1 };
+  return { tx: bookRect.left - L.pageW / 2, ty: bookRect.top, s: 1 };
+}
+
+async function openStory(id, srcEl) {
+  if (R) return;
+  let story;
+  try { story = await getFull(id); } catch { toast("That book couldn't be found."); return; }
+  R = { story, leaves: [], view: 0, srcEl, busy: true };
+  store.set("seen:" + id, true);
+  lastFocus = document.activeElement;
+  reader.hidden = false; document.body.classList.add("locked");
+  $("#readerTitle").textContent = story.title;
+  syncSave();
+  applyLayout();
+  try { await Promise.race([document.fonts.ready, wait(1500)]); } catch {}
+  R.leaves = buildLeaves(story);
+  paint(0);
+  if (location.hash !== "#/story/" + story.id) { history.pushState({ story: story.id }, "", "#/story/" + story.id); R.pushed = true; }
+
+  const src = srcEl && srcEl.isConnected ? srcEl.querySelector(".cover").getBoundingClientRect() : null;
+  const visible = src && src.bottom > 0 && src.top < innerHeight && src.right > 0 && src.left < innerWidth;
+  if (reduced() || !visible || !rbook.animate) {
+    rbook.style.opacity = "0"; reader.classList.add("show");
+    await rbook.animate([{ opacity: 0, transform: "scale(.97)" }, { opacity: 1, transform: "none" }], { duration: reduced() ? 180 : 420, easing: "cubic-bezier(0.23,1,0.32,1)" }).finished;
+    rbook.style.opacity = "";
+    return afterOpen();
+  }
+
+  // Stage 0: the flat, readable book is laid out in place; we fly a closed copy onto it.
+  const L = R.L;
+  const cov = coverLeafEl();
+  cov.style.width = L.pageW + "px"; cov.style.height = L.pageH + "px";
+  cov.style.left = (L.mode === "spread" ? L.pageW : 0) + "px";
+  rbook.append(cov);
+  const leftPg = rbook.querySelector(".pg.left");
+  leftPg.style.visibility = "hidden";
+  rbook.classList.add("bare"); // the closed book flies alone; the open painted book appears as the cover swings
+  srcEl.classList.add("away");
+  rbook.style.transformOrigin = "0 0";
+  const bookRect = rbook.getBoundingClientRect();
+  const from = bookTransformFrom(src);
+  const shiftX = L.mode === "spread" ? -L.pageW / 2 : 0; // closed book sits centred before it opens
+  const lift = `translate(${from.tx}px, ${from.ty - 14}px) scale(${from.scale * 1.05})`;
+  const start = `translate(${from.tx}px, ${from.ty}px) scale(${from.scale})`;
+  const mid = `translate(${shiftX}px, 0px) scale(1)`;
+  const end = `translate(0px, 0px) scale(1)`;
+  const persp = "perspective(2200px)";
+  // shelf tilt -> flat
+  const flight = rbook.animate([
+    { transform: `${persp} ${start} rotateY(-7deg)` },
+    { transform: `${persp} ${lift} rotateY(-4deg) rotateZ(-1deg)`, offset: .22 },
+    { transform: `${persp} ${mid} rotateY(0deg)` },
+  ], { duration: 640, easing: "cubic-bezier(0.65,0,0.35,1)", fill: "forwards" });
+  reader.classList.add("show");
+  await flight.finished;
+  rustle();
+  // Cover swings open around the spine while the spread settles in the centre.
+  rbook.classList.remove("bare");
+  const open = cov.firstElementChild.animate([{ transform: PERSP + "rotateY(0deg)" }, { transform: PERSP + "rotateY(-180deg)" }], { duration: 820, easing: "cubic-bezier(0.45,0,0.2,1)", fill: "forwards" });
+  const settle = rbook.animate([{ transform: `${persp} ${mid}` }, { transform: `${persp} ${end}` }], { duration: 820, easing: "cubic-bezier(0.45,0,0.2,1)", fill: "forwards" });
+  cov.animate([{ opacity: 1 }, { opacity: 1, offset: .5 }, { opacity: 0, offset: .72 }, { opacity: 0 }], { duration: 820, fill: "forwards" });
+  if (L.mode === "spread") { await wait(480); leftPg.style.visibility = ""; leftPg.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 260, fill: "backwards" }); }
+  await Promise.all([open.finished, settle.finished]);
+  flight.cancel();
+  leftPg.style.visibility = "";
+  cov.remove();
+  rbook.getAnimations().forEach((a) => a.cancel());
+  rbook.style.transform = "";
+  afterOpen();
+}
+let lastFocus = null;
+function afterOpen() {
+  reader.classList.add("chrome");
+  R.busy = false;
+  const pos = store.get("pos:" + R.story.id, null);
+  const rb = $("#resumeBtn");
+  const at = pos && typeof pos === "object" && typeof pos.w === "number" ? sheetForWord(pos.w) : -1;
+  if (at > 2) { rb.hidden = false; rb.textContent = `Carry on from page ${R.leaves[at].n}`; rb.dataset.leaf = at; }
+  else rb.hidden = true;
+  reader.querySelector('[data-r="close"]').focus({ preventScroll: true });
+}
+
+async function closeStory({ skipHistory = false } = {}) {
+  if (!R || R.closing) return;
+  // if a page is mid-turn, let it land first rather than ignoring the close
+  for (let t = 0; R && R.busy && t < 40; t++) await wait(50);
+  if (!R || R.busy || R.closing) return;
+  R.closing = true;
+  R.busy = true;
+  reader.classList.remove("chrome");
+  $("#resumeBtn").hidden = true;
+  const L = R.L, src = R.srcEl && R.srcEl.isConnected ? R.srcEl : $(`.book[data-id="${CSS.escape(R.story.id)}"]`);
+  let target = null;
+  if (src && !reduced()) {
+    src.scrollIntoView({ block: "nearest", inline: "nearest" });
+    const cr = src.querySelector(".cover").getBoundingClientRect();
+    if (cr.bottom > 0 && cr.top < innerHeight && cr.right > 0 && cr.left < innerWidth) target = { src, cr };
+  }
+  if (!target || !rbook.animate) {
+    reader.classList.remove("show");
+    await rbook.animate([{ opacity: 1 }, { opacity: 0, transform: "scale(.97)" }], { duration: 220, easing: "ease-out", fill: "forwards" }).finished;
+    return finishClose(skipHistory);
+  }
+  // Put the current spread back to the title page under a closing cover, then fly home.
+  target.src.classList.add("away");
+  const cov = coverLeafEl();
+  cov.style.width = L.pageW + "px"; cov.style.height = L.pageH + "px";
+  cov.style.left = (L.mode === "spread" ? L.pageW : 0) + "px";
+  cov.firstElementChild.style.transform = PERSP + "rotateY(-180deg)";
+  cov.style.opacity = "0";
+  rbook.append(cov);
+  const leftPg = rbook.querySelector(".pg.left");
+  const persp = "perspective(2200px)";
+  const shiftX = L.mode === "spread" ? -L.pageW / 2 : 0;
+  rustle();
+  const closeC = cov.firstElementChild.animate([{ transform: PERSP + "rotateY(-180deg)" }, { transform: PERSP + "rotateY(0deg)" }], { duration: 680, easing: "cubic-bezier(0.45,0,0.2,1)", fill: "forwards" });
+  cov.animate([{ opacity: 0 }, { opacity: 1, offset: .45 }, { opacity: 1 }], { duration: 680, fill: "forwards" });
+  const shift = rbook.animate([{ transform: `${persp} translate(0px,0px)` }, { transform: `${persp} translate(${shiftX}px,0px)` }], { duration: 680, easing: "cubic-bezier(0.45,0,0.2,1)", fill: "forwards" });
+  if (L.mode === "spread") setTimeout(() => (leftPg.style.visibility = "hidden"), 330);
+  setTimeout(() => rbook.classList.add("bare"), 420);
+  await Promise.all([closeC.finished, shift.finished]);
+  reader.classList.remove("show");
+  const to = bookTransformFrom(target.cr);
+  const fly = rbook.animate([
+    { transform: `${persp} translate(${shiftX}px,0px) scale(1) rotateY(0deg)` },
+    { transform: `${persp} translate(${to.tx}px, ${to.ty - 14}px) scale(${to.scale * 1.05}) rotateY(-4deg)`, offset: .8 },
+    { transform: `${persp} translate(${to.tx}px, ${to.ty}px) scale(${to.scale}) rotateY(-7deg)` },
+  ], { duration: 620, easing: "cubic-bezier(0.65,0,0.35,1)", fill: "forwards" });
+  await fly.finished;
+  target.src.classList.remove("away");
+  cov.remove(); leftPg.style.visibility = "";
+  finishClose(skipHistory);
+}
+function finishClose(skipHistory) {
+  rbook.getAnimations().forEach((a) => a.cancel());
+  rbook.style.transform = ""; rbook.style.opacity = "";
+  $$(".cover-leaf", rbook).forEach((x) => x.remove());
+  reader.hidden = true; reader.classList.remove("show", "chrome");
+  document.body.classList.remove("locked");
+  $$(".book.away").forEach((b) => b.classList.remove("away"));
+  const id = R.story.id, pushed = R.pushed; R = null;
+  if (!skipHistory && location.hash.startsWith("#/story/")) {
+    if (pushed) history.back(); // step back rather than adding a new entry, so Back doesn't reopen the book
+    else history.replaceState(null, "", location.pathname + location.search + "#library");
+  }
+  const b = $(`.book[data-id="${CSS.escape(id)}"]`);
+  (b || lastFocus)?.focus?.({ preventScroll: true });
+}
+
+/* ================= page turning ================= */
+async function turn(dir) {
+  if (!R || R.busy) return;
+  const total = viewCount(), next = R.view + dir;
+  if (next < 0 || next >= total) return;
+  R.busy = true;
+  rustle();
+  const L = R.L;
+  if (reduced() || !rbook.animate) {
+    const ins = [pgL, pgR];
+    await Promise.all(ins.map((p) => p.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 90, fill: "forwards" }).finished));
+    R.view = next; paint(next);
+    await Promise.all(ins.map((p) => p.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 160, fill: "forwards" }).finished));
+    ins.forEach((p) => p.getAnimations().forEach((a) => a.cancel()));
+    R.busy = false; return;
+  }
+  const ms = 560;
+  // A blank sheet of paper turns; the text itself never tilts.
+  const leaf = document.createElement("div"); leaf.className = "leaf";
+  leaf.innerHTML = `<div class="face"></div><div class="shade"></div>`;
+  leaf.style.width = L.pageW + "px"; leaf.style.height = L.pageH + "px";
+  if (L.mode === "spread") {
+    // the sheet is cut from the painted book itself, so its ornaments and colour match the page it lifts from
+    const f = leaf.querySelector(".face"), sc = L.s;
+    f.style.background = `url("/assets/art/book-spread.webp") ${-(dir > 0 ? 800 : 342) * sc}px ${-108 * sc}px / ${1600 * sc}px ${1050 * sc}px no-repeat`;
+  }
+  const outgoing = dir > 0 ? pgR : (L.mode === "spread" ? pgL : pgR);
+  // fade the words off the page that lifts
+  await outgoing.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 110, easing: "ease-out", fill: "forwards" }).finished;
+  if (L.mode === "spread") {
+    leaf.style.left = (dir > 0 ? L.pageW : 0) + "px";
+    leaf.style.transformOrigin = dir > 0 ? "0 50%" : "100% 50%";
+    leaf.style.borderRadius = dir > 0 ? "2px 10px 10px 2px" : "10px 2px 2px 10px";
+    rbook.append(leaf);
+    // underneath: reveal the new page on the side the leaf lifts from
+    const [nl, nr] = viewLeaves(next);
+    const under = dir > 0 ? pgR : pgL, other = dir > 0 ? pgL : pgR;
+    const h = leafHTML(dir > 0 ? nr : nl, R.story);
+    under.className = "pg-in " + h.cls; under.innerHTML = h.html; under.scrollTop = 0;
+    under.getAnimations().forEach((a) => a.cancel());
+    under.animate([{ opacity: 0 }, { opacity: 1 }], { duration: ms * .6, delay: ms * .15, easing: "ease-out", fill: "backwards" });
+    const persp = "perspective(2400px)";
+    const a = leaf.animate([{ transform: `${persp} rotateY(0deg)` }, { transform: `${persp} rotateY(${dir > 0 ? -180 : 180}deg)` }], { duration: ms, easing: "cubic-bezier(0.45,0.05,0.25,1)", fill: "forwards" });
+    leaf.querySelector(".shade").animate([{ opacity: 0 }, { opacity: .9, offset: .5 }, { opacity: 0 }], { duration: ms, fill: "forwards" });
+    // the sheet has landed flat over the facing page: swap the words underneath, then lift it away
+    await a.finished;
+    R.view = next; paint(next);
+    [pgL, pgR].forEach((p) => p.getAnimations().forEach((x) => x.cancel()));
+    await leaf.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 170, easing: "ease-out", fill: "forwards" }).finished;
+  } else {
+    // single page: the sheet peels away to the side, the next page is already underneath
+    leaf.style.left = "0px"; leaf.style.transformOrigin = dir > 0 ? "0 50%" : "0 50%";
+    leaf.style.borderRadius = "6px 12px 12px 6px";
+    R.view = next; paint(next);
+    pgR.getAnimations().forEach((x) => x.cancel());
+    rbook.append(leaf);
+    const persp = "perspective(1800px)";
+    const kf = dir > 0
+      ? [{ transform: `${persp} rotateY(0deg)`, opacity: 1 }, { transform: `${persp} rotateY(-100deg)`, opacity: 0 }]
+      : [{ transform: `${persp} rotateY(-100deg)`, opacity: 0 }, { transform: `${persp} rotateY(0deg)`, opacity: 1 }];
+    pgR.animate([{ opacity: 0 }, { opacity: 1 }], { duration: ms * .7, delay: dir > 0 ? ms * .2 : ms * .8, easing: "ease-out", fill: "backwards" });
+    leaf.querySelector(".shade").animate([{ opacity: 0 }, { opacity: .8 }], { duration: ms, fill: "forwards" });
+    await leaf.animate(kf, { duration: ms, easing: "cubic-bezier(0.45,0.05,0.25,1)", fill: "forwards" }).finished;
+    if (dir < 0) await wait(10);
+  }
+  leaf.remove();
+  R.busy = false;
+}
+function goToLeaf(i) { if (!R) return; R.view = viewForLeaf(i); paint(R.view); }
+
+/* swipe */
+(() => {
+  let sx = 0, sy = 0, active = false;
+  $("#stage").addEventListener("pointerdown", (e) => { if (e.pointerType === "mouse") return; active = true; sx = e.clientX; sy = e.clientY; }, { passive: true });
+  $("#stage").addEventListener("pointerup", (e) => {
+    if (!active) return; active = false;
+    const dx = e.clientX - sx, dy = e.clientY - sy;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.3) turn(dx < 0 ? 1 : -1);
+  }, { passive: true });
+  $("#stage").addEventListener("pointercancel", () => (active = false));
+})();
+
+/* ================= save / share / similar ================= */
+function syncSave() {
+  const on = R && state.saved.has(R.story.id);
+  const b = reader.querySelector('[data-r="save"]');
+  b.setAttribute("aria-pressed", String(!!on));
+  b.querySelector(".lbl").textContent = on ? "Saved" : "Save to Library";
+  b.setAttribute("aria-label", on ? "Saved — tap to remove from Saved Stories" : "Save to Saved Stories");
+}
+function toggleSave() {
+  const id = R.story.id;
+  state.saved.has(id) ? state.saved.delete(id) : state.saved.add(id);
+  store.set("saved", [...state.saved]); syncSave(); renderShelf();
+  toast(state.saved.has(id) ? "Saved to your Saved Stories" : "Removed from Saved Stories");
+}
+async function share() {
+  const url = location.origin + location.pathname + "#/story/" + R.story.id;
+  try {
+    if (navigator.share) { await navigator.share({ title: R.story.title, text: R.story.short_summary || "", url }); return; }
+    await navigator.clipboard.writeText(url); toast("Link copied — send it to someone special");
+  } catch (e) { if (e && e.name !== "AbortError") toast("Couldn't share — the link is " + url); }
+}
+
+/* ================= generate ================= */
+const OPT = {
+  adventure: [["surprise", "Surprise me"], ["mystery", "Mystery"], ["magical-creature", "Magical creature"], ["school-mystery", "School mystery"], ["hidden-world", "Hidden world"], ["time-travel", "Time travel"], ["funny-accident", "Funny accident"], ["treasure-hunt", "Treasure hunt"], ["enchanted-object", "Enchanted object"]],
+  alysia: [["surprise", "Surprise me"], ["yes", "Yes"], ["no", "No"]],
+  tito: [["surprise", "Surprise me"], ["yes", "Yes"], ["no", "No"]],
+  mood: [["surprise", "Surprise me"], ["funny", "Funny"], ["mysterious", "Mysterious"], ["exciting", "Exciting"], ["cozy", "Cozy"], ["brave", "Brave"]],
+};
+function buildOptions() {
+  for (const [key, list] of Object.entries(OPT)) {
+    const box = $("#opt" + key[0].toUpperCase() + key.slice(1));
+    box.innerHTML = list.map(([v, l], i) => `<label class="opt"><input type="radio" name="${key}" value="${v}"${i === 0 ? " checked" : ""}><span>${l}</span></label>`).join("");
+  }
+}
+const modal = $("#genModal");
+let similarTo = null;
+let genOpener = null;
+async function openGenerate(opts = {}) {
+  similarTo = opts.similarTo || null;
+  genOpener = document.activeElement;
+  if (opts.preset) for (const [k, v] of Object.entries(opts.preset)) { const i = modal.querySelector(`input[name="${k}"][value="${v}"]`); if (i) i.checked = true; }
+  $("#genTitle").textContent = similarTo ? `Another adventure like “${similarTo}”` : "A new adventure for Arhaan";
+  modal.hidden = false; document.body.classList.add("locked");
+  showBrewing(!!state.job);
+  $("#genErr").hidden = true;
+  if (!state.status) { try { state.status = await (await fetch("/api/status")).json(); } catch { state.status = { stories: false, offline: true }; } }
+  const st = state.status, note = $("#setupNote");
+  $("#passField").hidden = !st.passcode;
+  if (st.passcode) $("#passInput").value = store.get("pass", "");
+  if (st.offline) { note.hidden = false; note.textContent = "The story writer only works on the live site (it runs on Netlify)."; }
+  else if (!st.stories) { note.hidden = false; note.textContent = "Grown-ups: the story writer needs its key. Add ANTHROPIC_API_KEY in Netlify → Project configuration → Environment variables, then redeploy."; }
+  else if (!st.covers && !st.testMode) { note.hidden = false; note.textContent = "Covers will be illustrated by the library until an OPENAI_API_KEY is added for painted covers."; }
+  else if (st.testMode) { note.hidden = false; note.textContent = "Test mode is on: practice stories are made without calling the AI."; }
+  else note.hidden = true;
+  setTimeout(() => (state.job ? modal.querySelector("#brewing .btn") : modal.querySelector("input:checked"))?.focus(), 50);
+}
+function closeGenerate({ restoreFocus = true } = {}) {
+  modal.hidden = true;
+  if (!R) document.body.classList.remove("locked");
+  similarTo = null;
+  if (restoreFocus && !R) {
+    const target = genOpener && genOpener.isConnected && genOpener.offsetParent !== null ? genOpener : $('.hero [data-action="generate"]');
+    target?.focus({ preventScroll: true });
+  }
+}
+function showBrewing(on) { $("#genForm").hidden = on; $("#brewing").hidden = !on; }
+function setStep(status) {
+  const order = ["writing", "painting", "done"], idx = order.indexOf(status === "queued" ? "writing" : status);
+  $$(".steps li").forEach((li, i) => { li.classList.toggle("on", i === idx); li.classList.toggle("done", i < idx); });
+  const copy = {
+    writing: ["Writing Arhaan's next adventure…", "The quill is choosing a world he has never visited before."],
+    painting: ["Painting the cover…", "A brush is mixing emerald, silver and candlelight."],
+    done: ["Binding the book…", "Sliding it onto the shelf."],
+  }[order[Math.max(0, idx)]];
+  $("#brewTitle").textContent = copy[0]; $("#brewText").textContent = copy[1];
+}
+$("#genForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const btn = $("#genSubmit"); if (btn.disabled || state.job) return;
+  btn.disabled = true;
+  const fd = new FormData(e.target);
+  const body = { adventure: fd.get("adventure"), alysia: fd.get("alysia"), tito: fd.get("tito"), mood: fd.get("mood"), similarTo };
+  if (state.status?.passcode) { body.passcode = $("#passInput").value; store.set("pass", body.passcode); }
+  const err = $("#genErr"); err.hidden = true;
+  try {
+    const r = await fetch("/api/generate", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+    const data = await r.json().catch(() => ({}));
+    if (r.status === 409 && data.jobId) { startPolling(data.jobId); return; }
+    if (!r.ok) throw new Error(data.error || "Something went wrong. Please try again.");
+    startPolling(data.jobId);
+  } catch (ex) {
+    err.hidden = false; err.textContent = ex.message === "Failed to fetch" ? "Couldn't reach the story writer. Check the internet connection and try again." : ex.message;
+  } finally { btn.disabled = false; }
+});
+let pollTimer;
+function startPolling(jobId) {
+  state.job = { id: jobId, at: Date.now() }; store.set("job", state.job);
+  showBrewing(true); setStep("writing"); renderShelf();
+  clearTimeout(pollTimer); poll();
+}
+async function poll() {
+  if (!state.job) return;
+  if (Date.now() - state.job.at > 15 * 60 * 1000) return jobFailed("The story took too long to write. Please try again.");
+  try {
+    const r = await fetch(`/api/job/${encodeURIComponent(state.job.id)}`, { cache: "no-store" });
+    if (r.status === 404) return jobFailed("That story request was lost. Please try again.");
+    const j = await r.json();
+    setStep(j.status);
+    if (j.status === "done") return jobDone(j.storyId);
+    if (j.status === "failed") return jobFailed(j.error);
+  } catch {}
+  pollTimer = setTimeout(poll, 2500);
+}
+async function jobDone(storyId) {
+  state.job = null; store.del("job");
+  await loadLibrary();
+  state.filter = "all"; renderShelf(storyId);
+  const wasOpen = !modal.hidden;
+  if (wasOpen) closeGenerate({ restoreFocus: false });
+  showBrewing(false);
+  const book = $(`.book[data-id="${CSS.escape(storyId)}"]`);
+  const s = state.stories.find((x) => x.id === storyId);
+  if (wasOpen && book && !R) {
+    $("#library").scrollIntoView({ behavior: reduced() ? "auto" : "smooth", block: "start" });
+    $("#shelf").scrollTo({ left: 0 });
+    await wait(reduced() ? 50 : 650);
+    openStory(storyId, book);
+  } else {
+    toast(`“${s ? s.title : "A new story"}” is ready on the shelf`, { label: "Read it", fn: () => { if (R) return; openStory(storyId, $(`.book[data-id="${CSS.escape(storyId)}"]`)); } });
+  }
+}
+function jobFailed(msg) {
+  state.job = null; store.del("job"); renderShelf();
+  showBrewing(false);
+  if (!modal.hidden) { const err = $("#genErr"); err.hidden = false; err.textContent = msg || "The story couldn't be finished. Please try again."; }
+  else toast(msg || "The new story couldn't be finished.", { label: "Try again", fn: () => openGenerate() });
+}
+
+/* ================= focus trap for dialogs ================= */
+function trap(e, root) {
+  const f = $$('button:not([disabled]),a[href],input:not([disabled]),[tabindex]:not([tabindex="-1"])', root).filter((x) => x.getClientRects().length > 0 && getComputedStyle(x).visibility !== "hidden");
+  if (!f.length) return;
+  const first = f[0], last = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+}
+
+/* ================= events ================= */
+document.addEventListener("click", (e) => {
+  const t = e.target.closest("[data-action],[data-r],[data-close],.book[data-id],.chip");
+  if (!t) return;
+  if (t.matches(".book[data-id]")) { openStory(t.dataset.id, t); return; }
+  if (t.matches(".chip")) { state.filter = t.dataset.filter; renderShelf(); $("#shelf").scrollTo({ left: 0 }); return; }
+  if (t.hasAttribute("data-close")) { closeGenerate(); return; }
+  const a = t.dataset.action;
+  if (a === "generate") { closeMenu(); openGenerate(); return; }
+  if (a === "saved") { e.preventDefault(); closeMenu(); state.filter = "saved"; renderShelf(); $("#library").scrollIntoView({ behavior: reduced() ? "auto" : "smooth" }); return; }
+  if (a === "sound") { state.sound = !state.sound; store.set("sound", state.sound); syncSound(); if (state.sound) rustle(); return; }
+  const r = t.dataset.r;
+  if (!r || !R) return;
+  if (r === "close") closeStory();
+  else if (r === "next") turn(1);
+  else if (r === "prev") turn(-1);
+  else if (r === "save") toggleSave();
+  else if (r === "share") share();
+  else if (r === "size") { state.size = (state.size + 1) % 3; store.set("size", state.size); reflow(currentStoryPage()); toast(["Smaller text", "Normal text", "Larger text"][state.size]); }
+  else if (r === "restart") { goToLeaf(0); }
+  else if (r === "similar" || r === "newstory") {
+    const s = R.story, preset = r === "similar" ? (s.options || { adventure: guessType(s), mood: "surprise" }) : null;
+    const ttl = s.title;
+    closeStory().then(() => openGenerate(r === "similar" ? { similarTo: ttl, preset: { adventure: preset.adventure, mood: preset.mood, alysia: (s.characters || []).includes("Alysia") ? "yes" : "surprise", tito: (s.characters || []).includes("Tito") ? "yes" : "surprise" } } : {}));
+  }
+  else if (r === "another") {
+    const others = state.stories.filter((x) => x.id !== R.story.id);
+    const unread = others.filter((x) => !store.get("seen:" + x.id, false));
+    const pick = (unread.length ? unread : others)[Math.floor(Math.random() * (unread.length || others.length))];
+    closeStory().then(() => { if (!pick) return; const b = $(`.book[data-id="${CSS.escape(pick.id)}"]`); if (b) { b.scrollIntoView({ block: "nearest", inline: "center", behavior: reduced() ? "auto" : "smooth" }); setTimeout(() => openStory(pick.id, b), reduced() ? 20 : 450); } else openStory(pick.id); });
+  }
+});
+function guessType(s) {
+  const t = (s.tags || []).join(" ");
+  if (/funny|mishap|comedy/.test(t)) return "funny-accident";
+  if (/creature|sea|island/.test(t)) return "magical-creature";
+  if (/library|school/.test(t)) return "school-mystery";
+  if (/time|eclipse/.test(t)) return "time-travel";
+  if (/map|treasure/.test(t)) return "treasure-hunt";
+  if (/object|clockwork|compass/.test(t)) return "enchanted-object";
+  return "surprise";
+}
+$("#resumeBtn").addEventListener("click", (e) => { goToLeaf(Number(e.currentTarget.dataset.leaf)); e.currentTarget.hidden = true; rustle(); });
+document.addEventListener("keydown", (e) => {
+  if (!reader.hidden && R) {
+    if (e.key === "Tab") return trap(e, reader);
+    if (e.key === "Escape") { e.preventDefault(); closeStory(); }
+    else if (["ArrowRight", "PageDown"].includes(e.key) || (e.key === " " && !e.target.closest("button"))) { e.preventDefault(); turn(1); }
+    else if (["ArrowLeft", "PageUp"].includes(e.key)) { e.preventDefault(); turn(-1); }
+    else if (e.key === "Home") { e.preventDefault(); goToLeaf(0); }
+    else if (e.key === "End") { e.preventDefault(); goToLeaf(R.leaves.length - 1); }
+    return;
+  }
+  if (!modal.hidden) { if (e.key === "Escape") closeGenerate(); if (e.key === "Tab") trap(e, modal); }
+  if (e.key === "Escape") closeMenu();
+});
+let rz;
+addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { if (R && !R.busy) reflow(currentStoryPage()); updateArrows(); }, 120); });
+addEventListener("popstate", () => {
+  const m = location.hash.match(/^#\/story\/(.+)$/);
+  if (!m && R) closeStory({ skipHistory: true });
+  else if (m && !R) openStory(decodeURIComponent(m[1]), $(`.book[data-id="${CSS.escape(decodeURIComponent(m[1]))}"]`));
+});
+
+/* shelf scrolling */
+$("#shelf").addEventListener("scroll", updateArrows, { passive: true });
+$("#shelfPrev").onclick = () => $("#shelf").scrollBy({ left: -$("#shelf").clientWidth * .8, behavior: reduced() ? "auto" : "smooth" });
+$("#shelfNext").onclick = () => $("#shelf").scrollBy({ left: $("#shelf").clientWidth * .8, behavior: reduced() ? "auto" : "smooth" });
+
+/* mobile menu */
+const nav = $("#nav"), menuBtn = $("#menuBtn");
+function closeMenu() { nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); }
+menuBtn.onclick = () => { const o = !nav.classList.contains("open"); nav.classList.toggle("open", o); menuBtn.setAttribute("aria-expanded", String(o)); };
+$$(".nav a").forEach((a) => a.addEventListener("click", () => closeMenu()));
+$$('.nav a[data-nav="library"]').forEach((a) => a.addEventListener("click", () => { state.filter = "all"; renderShelf(); }));
+
+/* active nav on scroll */
+let currentSection = "home";
+function syncNav() {
+  $$(".nav a").forEach((a) => {
+    const n = a.dataset.nav;
+    const on = currentSection === "library" ? (state.filter === "saved" ? n === "saved" : n === "library") : n === currentSection;
+    a.setAttribute("aria-current", String(on));
+  });
+}
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((en) => { if (en.isIntersecting) { currentSection = en.target.id; syncNav(); } });
+}, { rootMargin: "-45% 0px -50% 0px" });
+["home", "library", "about"].forEach((id) => io.observe(document.getElementById(id)));
+
+/* ================= boot ================= */
+heroArt(); if (!ART.hero) parallax(); sparkles(); buildOptions(); syncSound();
+loadLibrary().then(() => {
+  const m = location.hash.match(/^#\/story\/(.+)$/);
+  if (m) { const id = decodeURIComponent(m[1]); openStory(id, $(`.book[data-id="${CSS.escape(id)}"]`)); }
+  if (state.job) { renderShelf(); poll(); }
+});
+})();
+</script>
+</body>
+</html>

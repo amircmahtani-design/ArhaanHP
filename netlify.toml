@@ -1,0 +1,20 @@
+[build]
+  publish = "public"
+  command = "echo 'No build step needed'"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+  # character reference covers used when painting new covers
+  included_files = ["public/assets/covers/lost-compass-valmora.webp", "public/assets/covers/whispering-woods.webp", "public/assets/covers/titos-magical-mishap.webp"]
+
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

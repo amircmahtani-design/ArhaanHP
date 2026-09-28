@@ -1,0 +1,10 @@
+{
+  "name": "arhaans-enchanted-chronicles",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Arhaan's Enchanted Chronicles — an AI storybook library",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}
