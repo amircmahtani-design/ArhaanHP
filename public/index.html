@@ -54,12 +54,12 @@ a{color:inherit}
     linear-gradient(180deg,rgba(4,18,15,.55) 0%, rgba(5,20,17,.78) 35%, rgba(4,14,12,.9) 100%);}
 @keyframes hallDrift{from{transform:scale(1) translate3d(0,0,0)}to{transform:scale(1.07) translate3d(-1.2%,-1%,0)}}
 .candle-glow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:0;
-  background:radial-gradient(circle, rgba(236,176,86,.16), rgba(236,176,86,0) 65%);animation:flicker 5.5s infinite ease-in-out}
+  background:radial-gradient(circle, rgba(236,176,86,.09), rgba(236,176,86,0) 65%);animation:flicker 5.5s infinite ease-in-out}
 .candle-glow.a{left:-220px;top:18%}
 .candle-glow.b{right:-240px;top:58%;animation-delay:-2.2s}
 @keyframes flicker{0%,100%{opacity:.85;transform:scale(1)}22%{opacity:1;transform:scale(1.03)}48%{opacity:.7;transform:scale(.98)}70%{opacity:.95;transform:scale(1.02)}}
 .sparkles{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
-.sparkles i{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--gold-l);box-shadow:0 0 8px 2px rgba(226,200,142,.55);opacity:0;animation:drift linear infinite}
+.sparkles i{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--gold-l);box-shadow:0 0 6px 1px rgba(226,200,142,.4);opacity:0;animation:drift linear infinite}
 @keyframes drift{0%{opacity:0;transform:translate3d(0,0,0)}15%{opacity:.8}85%{opacity:.5}100%{opacity:0;transform:translate3d(24px,-160px,0)}}
 
 .wrap{position:relative;z-index:2;max-width:1360px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
@@ -95,48 +95,54 @@ a{color:inherit}
 .brand-name b{font-size:clamp(17px,2.2vw,21px)}
 
 /* ---------- buttons ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;font-weight:500;font-size:16px;letter-spacing:.01em;text-decoration:none;transition:transform .15s var(--ease-out),background-color .2s var(--ease-out),box-shadow .2s var(--ease-out),border-color .2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;font-weight:500;font-size:16px;letter-spacing:.01em;text-decoration:none;transition:transform .18s var(--ease-out),background-color .18s var(--ease-out),box-shadow .18s var(--ease-out),border-color .18s}
 .btn:active{transform:scale(.97)}
 .btn[disabled]{opacity:.55;cursor:not-allowed}
-.btn-primary{background:linear-gradient(180deg,#236f59,#17503F);color:#F6ECD8;border:1px solid rgba(226,200,142,.55);box-shadow:0 0 0 4px rgba(31,106,86,.18),0 10px 30px -10px rgba(31,106,86,.9)}
-@media (hover:hover) and (pointer:fine){.btn-primary:hover{background:linear-gradient(180deg,#2a7d65,#1a5a47);box-shadow:0 0 0 5px rgba(31,106,86,.25),0 12px 34px -8px rgba(31,106,86,1)}}
-.btn-ghost{border:1px solid rgba(198,161,91,.45);color:var(--parch-l)}
-@media (hover:hover) and (pointer:fine){.btn-ghost:hover{background:rgba(198,161,91,.1)}}
+/* deep bottle green with an old-gold edge; secondary sinks into the scene */
+.btn-primary{background:linear-gradient(180deg,#154236,#0c2e25);color:#F3E6CB;border:1px solid rgba(208,172,104,.62);box-shadow:inset 0 1px 0 rgba(240,214,160,.12),0 0 14px -4px rgba(208,172,104,.28),0 10px 26px -14px rgba(0,0,0,.9)}
+.btn-primary svg{color:#D8B874}
+@media (hover:hover) and (pointer:fine){.btn-primary:hover{transform:translateY(-2px);border-color:rgba(226,196,130,.85);box-shadow:inset 0 1px 0 rgba(240,214,160,.16),0 0 20px -4px rgba(214,178,108,.42),0 14px 30px -14px rgba(0,0,0,.9)}}
+.btn-ghost{background:rgba(4,16,14,.34);border:1px solid rgba(198,161,91,.38);color:#E9DCC0;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+@media (hover:hover) and (pointer:fine){.btn-ghost:hover{transform:translateY(-1px);border-color:rgba(214,182,116,.6);box-shadow:0 0 16px -6px rgba(214,178,108,.35)}}
+.btn-primary:active,.btn-ghost:active{transform:scale(.97)}
 .btn svg{width:20px;height:20px;flex-shrink:0}
 
 /* ---------- hero ---------- */
-.hero{position:relative;margin-top:var(--s24);border-radius:18px;overflow:hidden;border:1px solid rgba(198,161,91,.3);background:#061513;box-shadow:var(--shadow);min-height:clamp(380px,34vw,470px);display:flex;align-items:center;isolation:isolate}
+.hero{position:relative;margin-top:var(--s24);border-radius:24px;overflow:hidden;border:1px solid rgba(198,161,91,.14);background:#061513;min-height:clamp(400px,36vw,500px);display:flex;align-items:center;isolation:isolate;
+  /* the lake mist and darkness fade into the page instead of stopping at an edge */
+  -webkit-mask-image:linear-gradient(180deg,#000 0,#000 calc(100% - 72px),transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 calc(100% - 72px),transparent 100%)}
+.hero::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;box-shadow:inset 0 0 0 1px rgba(255,236,200,.025),inset 0 0 90px rgba(1,8,7,.45)}
 .hero-art{position:absolute;inset:0;z-index:-2}
 .hero-art svg{width:100%;height:100%}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(4,14,12,.88) 0%,rgba(4,14,12,.62) 32%,rgba(4,14,12,.08) 58%,rgba(4,14,12,0) 100%),linear-gradient(0deg,rgba(4,14,12,.55),rgba(4,14,12,0) 35%)}
-.hero-copy{padding:clamp(28px,4vw,56px) clamp(28px,5vw,64px);max-width:780px}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(3,13,11,.9) 0%,rgba(3,13,11,.72) 22%,rgba(3,13,11,.3) 40%,rgba(3,13,11,0) 54%)}
+.hero-copy{position:relative;z-index:1;padding:clamp(40px,5vw,72px) clamp(28px,5vw,72px) clamp(56px,6vw,88px);max-width:760px}
 .eyebrow{font-family:var(--f-mark);font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 var(--s16);display:flex;align-items:center;gap:10px}
 .eyebrow svg{width:14px;height:14px}
-.hero h1{font-family:var(--f-display);font-weight:600;font-size:clamp(40px,4.8vw,64px);line-height:1.02;letter-spacing:-.015em;margin:0 0 var(--s16);color:#F6ECD8;text-wrap:balance}
-.hero p.sub{font-family:var(--f-read);font-size:clamp(19px,1.8vw,23px);line-height:1.45;color:#E4D8BF;margin:0 0 var(--s32);max-width:40ch}
-.hero h1{max-width:13em}
+.hero h1{font-family:var(--f-display);font-weight:600;font-size:clamp(38px,4.5vw,59px);line-height:1.1;letter-spacing:-.012em;margin:0 0 var(--s24);color:#EFE2C4;text-wrap:balance}
+.hero p.sub{font-family:var(--f-read);font-size:clamp(17px,1.6vw,21px);line-height:1.5;color:rgba(226,212,184,.82);margin:0 0 var(--s32);max-width:44ch;text-wrap:balance}
+.hero h1{max-width:11.5em}
 .hero-actions{display:flex;flex-wrap:wrap;gap:var(--s12);align-items:center}
-.promises{display:flex;flex-wrap:wrap;gap:var(--s16) var(--s24);margin:var(--s24) 0 0;padding:0;list-style:none}
-.promises li{display:flex;align-items:center;gap:10px;font-size:13.5px;line-height:1.3;color:var(--text-dim)}
-.promises svg{width:22px;height:22px;color:var(--gold);flex-shrink:0}
+.promises{display:flex;flex-wrap:wrap;gap:var(--s8) var(--s32);margin:var(--s24) 0 0;padding:0;list-style:none}
+.promises li{display:flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.02em;line-height:1.3;color:rgba(212,196,164,.72);white-space:nowrap}
+.promises svg{width:11px;height:11px;color:rgba(198,161,91,.85);flex-shrink:0}
 .banner{position:absolute;right:clamp(24px,4vw,56px);top:0;width:150px;padding:28px 16px 56px;background:linear-gradient(180deg,#0f3a30,#0a2b24);clip-path:polygon(0 0,100% 0,100% 100%,50% 88%,0 100%);text-align:center;font-family:var(--f-display);font-size:17px;line-height:1.25;color:var(--parch);box-shadow:inset 0 0 0 1px rgba(198,161,91,.25);opacity:.95}
 .banner svg{width:44px;height:44px;margin:0 auto 12px;color:var(--silver)}
 @media (max-width:1100px){.banner{display:none}}
 @media (max-width:760px){
-  .hero{align-items:flex-end;min-height:600px}
-  .hero::before{background:linear-gradient(180deg,rgba(5,18,16,0) 0%,rgba(5,18,16,.35) 35%,rgba(5,18,16,.92) 62%,rgba(5,18,16,.97) 100%)}
-  .hero-copy{padding:var(--s24) var(--s24) var(--s32)}
-  .promises{gap:var(--s12) var(--s16)}
-  .promises li{max-width:none}
+  .hero{align-items:flex-end;min-height:600px;border-radius:22px}
+  .hero::before{background:linear-gradient(180deg,rgba(5,18,16,0) 0%,rgba(5,18,16,.3) 32%,rgba(4,15,13,.9) 60%,rgba(4,15,13,.96) 100%)}
+  .hero-copy{padding:var(--s24) var(--s24) var(--s64)}
+  .promises{gap:var(--s8) var(--s24)}
 }
 
 /* ---------- library ---------- */
 .section{position:relative;z-index:2;padding-block:clamp(40px,4.5vw,64px) 0}
+#library{padding-top:clamp(48px,5.5vw,80px)}
 .sec-head{display:flex;align-items:center;gap:var(--s16);margin-bottom:var(--s24);flex-wrap:wrap}
 .sec-head h2{font-family:var(--f-display);font-weight:600;font-size:clamp(30px,3.4vw,40px);letter-spacing:-.01em;margin:0;color:#F3E7CF;display:flex;align-items:center;gap:12px}
 .sec-head h2 svg{width:22px;height:22px;color:var(--gold)}
-.rule{flex:1;min-width:40px;height:1px;background:linear-gradient(90deg,rgba(198,161,91,.55),rgba(198,161,91,.1));position:relative}
-.rule::after{content:"";position:absolute;right:0;top:-4px;width:9px;height:9px;border:1px solid rgba(198,161,91,.6);transform:rotate(45deg)}
+.rule{flex:1;min-width:40px;height:1px;background:linear-gradient(90deg,rgba(198,161,91,.34),rgba(198,161,91,.04));position:relative}
+.rule::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;border:1px solid rgba(198,161,91,.36);transform:rotate(45deg)}
 .lib-tools{display:flex;align-items:center;gap:var(--s8);flex-wrap:wrap}
 .chips{display:flex;gap:var(--s8);flex-wrap:wrap}
 .chip{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(198,161,91,.28);font-size:14px;color:var(--text-dim);transition:all .2s var(--ease-out);display:inline-flex;align-items:center;gap:8px}
@@ -374,17 +380,27 @@ a{color:inherit}
 .hero-photo{object-position:62% 45%}
 @media (max-width:1100px){.hero-photo{object-position:66% 45%}}
 @media (max-width:760px){.hero-photo{object-position:50% 30%}}
-.fx-mist i{position:absolute;left:0;width:200%;height:46%;background:url("/assets/art/mist.webp") 0 100%/50% 100% repeat-x;opacity:.55;mix-blend-mode:screen}
-.fx-mist .m1{bottom:-6%;animation:mist 55s linear infinite}
-.fx-mist .m2{bottom:6%;height:34%;opacity:.35;animation:mist 85s linear infinite reverse}
-.fx-candles i{position:absolute;background:url("/assets/art/candles.webp") center/contain no-repeat;will-change:transform}
-.fx-candles .c1{right:4%;top:-3%;width:42%;height:40%;animation:bob 8s ease-in-out infinite,candleFlick 2.6s ease-in-out infinite alternate}
-.fx-candles .c2{left:36%;top:-5%;width:24%;height:24%;filter:blur(1.2px);animation:bob 11s ease-in-out infinite -4s,candleFlickFar 3.1s ease-in-out infinite alternate -1s}
+.hero-photo{filter:saturate(.93) contrast(1.07) brightness(.92)}
+/* colour grade: deeper midnight blue-green shadows, a lifted moon, a faint cool rim on the castle */
+.hero-art .grade{position:absolute;inset:0;pointer-events:none}
+.hero-art .grade.shade{background:linear-gradient(180deg,rgba(2,14,18,.32) 0%,rgba(2,14,18,0) 34%,rgba(2,12,12,0) 62%,rgba(1,8,8,.5) 100%);mix-blend-mode:multiply}
+.hero-art .grade.moon{background:radial-gradient(9% 20% at 76.5% 11%,rgba(224,238,240,.26),rgba(224,238,240,0) 70%),radial-gradient(22% 34% at 66% 26%,rgba(150,188,206,.13),rgba(150,188,206,0) 72%);mix-blend-mode:screen}
+@media (max-width:1100px){.hero-art .grade.moon{display:none}}
+.fx-mist i{position:absolute;left:0;width:200%;height:28%;background:url("/assets/art/mist.webp") 0 100%/50% 100% repeat-x;opacity:.42;mix-blend-mode:screen}
+.fx-mist .m1{bottom:-4%;animation:mist 110s linear infinite}
+.fx-mist .m2{bottom:2%;height:20%;opacity:.24;animation:mist 160s linear infinite reverse}
+.fx-candles i{position:absolute;aspect-ratio:1/2.6;background:center bottom/contain no-repeat;will-change:transform;animation:bobSoft 9s ease-in-out infinite,candleFlick 2.8s ease-in-out infinite alternate}
+.fx-candles .c1{left:46%;top:5%;width:1.8%;background-image:url("/assets/art/candle-a.webp");filter:blur(.9px);opacity:.6;animation-duration:12s,3.3s;animation-delay:-3s,-1s}
+.fx-candles .c2{left:50.5%;top:15%;width:2.6%;background-image:url("/assets/art/candle-b.webp");animation-delay:-6s,-.4s}
+.fx-candles .c3{left:83.5%;top:21%;width:1.9%;background-image:url("/assets/art/candle-c.webp");filter:blur(.7px);opacity:.7;animation-duration:11s,3s;animation-delay:-1s,-2s}
+.fx-candles .c4{left:89%;top:4%;width:2.7%;background-image:url("/assets/art/candle-d.webp");animation-duration:10s,2.6s;animation-delay:-4s,-1.6s}
+@keyframes bobSoft{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-6px,0)}}
 @keyframes candleFlick{0%{opacity:1}40%{opacity:.86}55%{opacity:.97}100%{opacity:.9}}
 @keyframes candleFlickFar{0%{opacity:.55}50%{opacity:.42}100%{opacity:.5}}
-.fx-sparkles{position:absolute;inset:0;background:url("/assets/art/sparkles.webp") 70% 40%/cover no-repeat;mix-blend-mode:screen;animation:sparkPulse 7s ease-in-out infinite alternate}
-@keyframes sparkPulse{0%{opacity:.25;transform:translate3d(0,6px,0) scale(1)}100%{opacity:.7;transform:translate3d(-8px,-6px,0) scale(1.03)}}
-@media (max-width:760px){.fx-candles .c1{width:48%;height:17%;right:-4%;top:-1%}.fx-candles .c2{display:none}}
+.fx-sparkles{position:absolute;inset:0;background:url("/assets/art/sparkles.webp") 70% 40%/cover no-repeat;mix-blend-mode:screen;opacity:.16;animation:sparkPulse 14s ease-in-out infinite alternate}
+@keyframes sparkPulse{0%{opacity:.1}100%{opacity:.22}}
+@media (max-width:1100px){.fx-candles .c1,.fx-candles .c3{display:none}.fx-candles .c2{left:74%;top:4%;width:3.4%}.fx-candles .c4{left:90%;top:10%;width:3.8%}}
+@media (max-width:760px){.fx-candles .c2{left:66%;top:2%;width:7%}.fx-candles .c3{display:none}.fx-candles .c4{left:84%;top:4%;width:7.5%}.fx-sparkles{display:none}}
 @media (prefers-reduced-motion:reduce){.fx-mist i,.fx-candles i,.fx-sparkles{animation:none!important}}
 /* ---------- moving scene ---------- */
 .hero-art .layer{position:absolute;inset:-4%;will-change:transform}
@@ -477,7 +493,7 @@ a{color:inherit}
 <main id="home">
   <div class="wrap">
     <section class="hero" aria-labelledby="heroTitle">
-      <div class="hero-art" id="heroArt" aria-hidden="true"><div class="layer" data-depth=".12"><picture><source media="(max-width: 760px)" srcset="/assets/art/hero-portrait.webp"><source media="(max-width: 1100px)" srcset="/assets/art/hero-tablet.webp"><img class="hero-photo" id="heroImg" src="/assets/art/hero-wide.webp" alt="" fetchpriority="high" decoding="async"></picture></div></div>
+      <div class="hero-art" id="heroArt" aria-hidden="true"><div class="layer" data-depth=".12"><picture><source media="(max-width: 760px)" srcset="/assets/art/hero-portrait.webp"><source media="(max-width: 1100px)" srcset="/assets/art/hero-tablet.webp"><img class="hero-photo" id="heroImg" src="/assets/art/hero-wide.webp" alt="" fetchpriority="high" decoding="async"></picture><i class="grade shade"></i><i class="grade moon"></i></div></div>
       <div class="hero-copy">
         <p class="eyebrow"><svg aria-hidden="true"><use href="#i-sparkle"/></svg>Written for one hero</p>
         <h1 id="heroTitle">Stories for a Brighter Imagination</h1>
@@ -487,9 +503,8 @@ a{color:inherit}
           <a class="btn btn-ghost" href="#library">Visit the library</a>
         </div>
         <ul class="promises">
-          <li><svg aria-hidden="true"><use href="#i-quill"/></svg>A brand-new adventure every time</li>
-          <li><svg aria-hidden="true"><use href="#i-sparkle"/></svg>Each book gets its own painted cover</li>
-          <li><svg aria-hidden="true"><use href="#i-book"/></svg>Kept forever in Arhaan's library</li>
+          <li><svg aria-hidden="true"><use href="#i-sparkle"/></svg>A brand-new adventure every time</li>
+          <li><svg aria-hidden="true" viewBox="0 0 12 12"><path d="M6 1.2 10.8 6 6 10.8 1.2 6Z" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>Kept forever in Arhaan's library</li>
         </ul>
       </div>
     </section>
@@ -798,7 +813,7 @@ function heroArt() {
         <div class="layer clouds" data-depth=".22"><i style="top:4%;--d:110s;--delay:-30s;width:44%"></i><i style="top:16%;--d:150s;--delay:-90s;width:36%"></i></div>
         <div class="layer" data-depth=".35"><i class="fx-sparkles"></i></div>
         <div class="layer fx-mist" data-depth=".55"><i class="m1"></i><i class="m2"></i></div>
-        <div class="layer fx-candles" data-depth=".85"><i class="c1"></i><i class="c2"></i></div>`);
+        <div class="layer fx-candles" data-depth=".85"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i></div>`);
       parallax();
     };
     if (img.complete) addFx(); else { img.addEventListener("load", addFx, { once: true }); img.addEventListener("error", addFx, { once: true }); }
@@ -838,7 +853,7 @@ function parallax() {
 function sparkles() {
   if (reduced()) return;
   const box = $("#sparkles"); const r = rng(42); let h = "";
-  for (let i = 0; i < 22; i++) h += `<i style="left:${(r() * 100).toFixed(1)}%;top:${(20 + r() * 80).toFixed(1)}%;animation-duration:${(9 + r() * 10).toFixed(1)}s;animation-delay:-${(r() * 18).toFixed(1)}s"></i>`;
+  for (let i = 0; i < 9; i++) h += `<i style="left:${(r() * 100).toFixed(1)}%;top:${(20 + r() * 80).toFixed(1)}%;animation-duration:${(9 + r() * 10).toFixed(1)}s;animation-delay:-${(r() * 18).toFixed(1)}s"></i>`;
   box.innerHTML = h;
 }
 
